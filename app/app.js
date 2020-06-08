@@ -19,7 +19,10 @@ mongodb = require("mongodb");
 uri = "mongodb+srv://ibw:kpi2semester@dbkpi-rcc66.gcp.mongodb.net";
 const result = [];
 
-mongodb.MongoClient.connect(uri, (err, client) => {
+mongodb.MongoClient.connect(uri, {useUnifiedTopology: true},(err, client) => {
+
+    //log error if any connection error occurred
+    if (err) return console.log(err)
 
     const db = client.db("kpiData");
     const collection = db.collection("kpiValues");
