@@ -39,8 +39,10 @@ mongodb.MongoClient.connect(uri, {useUnifiedTopology: true},(err, client) => {
 //Responds to GET requests to the root route ('/')
 app.get("/", (req, res) => {
     let dataToSend = {
+        "oee": result[0].oee,
         "ava": result[0].ava,
-        "eff": result[0].eff
+        "eff": result[0].eff,
+        "qua": result[0].qua
     }
     res.render("index", dataToSend);
 });
