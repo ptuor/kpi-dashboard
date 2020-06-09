@@ -47,6 +47,6 @@ app.get("/", (req, res) => {
 
 // listen for requests on port 3000
 const port = 3000;
-var listener = app.listen(port, () => {
+const listener = app.listen(port, () => {
     console.log('Your app is listening on port ' + listener.address().port);
 });
