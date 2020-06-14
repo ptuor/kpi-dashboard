@@ -47,6 +47,17 @@ app.get("/", (req, res) => {
     res.render("index", dataToSend);
 });
 
+
+
+// route all requests to router
+const router = require('./router/router.js')
+const bodyParser = require('body-parser')
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/', router)
+
+
+
 // listen for requests on port 3000
 const port = 3000;
 const listener = app.listen(port, () => {

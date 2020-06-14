@@ -2,10 +2,11 @@
   "name": "repo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app/app.js",
   "scripts": {
     "start": "node app/app.js",
-    "test": "./node_modules/.bin/mocha src/test/*.test.mjs"
+    "test": "./node_modules/.bin/mocha src/test/*.test.mjs",
+    "dev": "./node_modules/.bin/nodemon app/app.js"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +16,8 @@
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
     "mongodb": "^3.5.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
