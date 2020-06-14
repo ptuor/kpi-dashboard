@@ -1,3 +1,5 @@
+
+
 // init project
 const express = require('express');
 const app = express();
@@ -38,14 +40,19 @@ mongodb.MongoClient.connect(uri, {useUnifiedTopology: true},(err, client) => {
 
 //Responds to GET requests to the root route ('/')
 app.get("/", (req, res) => {
-    let dataToSend = {
+   /* let dataToSend = {
         "oee": result[0].oee,
         "ava": result[0].ava,
         "eff": result[0].eff,
         "qua": result[0].qua
-    }
-    res.render("index", dataToSend);
+    }*/
+    res.render("index");
 });
+
+//Responds to GET requests to the root route ('/polling')
+app.get('/polling', (req, res) => {
+    res.send(result)
+})
 
 // listen for requests on port 3000
 const port = 3000;
