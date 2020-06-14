@@ -19,7 +19,12 @@ mongodb = require("mongodb");
 uri = "mongodb+srv://ibw:kpi2semester@dbkpi-rcc66.gcp.mongodb.net";
 const result = [];
 
-mongodb.MongoClient.connect(uri, (err, client) => {
+mongodb.MongoClient.connect(uri, {
+    useUnifiedTopology: true
+}, (err, client) => {
+
+    //log error if any connection error occurred
+    if (err) return console.log(err)
 
     const db = client.db("kpiData");
     const collection = db.collection("kpiValues");
@@ -35,15 +40,32 @@ mongodb.MongoClient.connect(uri, (err, client) => {
 
 //Responds to GET requests to the root route ('/')
 app.get("/", (req, res) => {
-    let dataToSend = {
-        "ava": result[0].ava,
-        "eff": result[0].eff
-    }
-    res.render("index", dataToSend);
+    /* let dataToSend = {
+         "oee": result[0].oee,
+         "ava": result[0].ava,
+         "eff": result[0].eff,
+         "qua": result[0].qua
+     }*/
+    res.render("index");
 });
+
+//Responds to GET requests to the root route ('/polling')
+app.get('/polling', (req, res) => {
+    res.send(result)
+})
+
+// route all requests to router
+const router = require('./router/router.js')
+const bodyParser = require('body-parser')
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use('/', router)
+
 
 // listen for requests on port 3000
 const port = 3000;
-var listener = app.listen(port, () => {
+const listener = app.listen(port, () => {
     console.log('Your app is listening on port ' + listener.address().port);
 });
