@@ -1,5 +1,3 @@
-
-
 // init project
 const express = require('express');
 const app = express();
@@ -21,7 +19,9 @@ mongodb = require("mongodb");
 uri = "mongodb+srv://ibw:kpi2semester@dbkpi-rcc66.gcp.mongodb.net";
 const result = [];
 
-mongodb.MongoClient.connect(uri, {useUnifiedTopology: true},(err, client) => {
+mongodb.MongoClient.connect(uri, {
+    useUnifiedTopology: true
+}, (err, client) => {
 
     //log error if any connection error occurred
     if (err) return console.log(err)
@@ -40,12 +40,12 @@ mongodb.MongoClient.connect(uri, {useUnifiedTopology: true},(err, client) => {
 
 //Responds to GET requests to the root route ('/')
 app.get("/", (req, res) => {
-   /* let dataToSend = {
-        "oee": result[0].oee,
-        "ava": result[0].ava,
-        "eff": result[0].eff,
-        "qua": result[0].qua
-    }*/
+    /* let dataToSend = {
+         "oee": result[0].oee,
+         "ava": result[0].ava,
+         "eff": result[0].eff,
+         "qua": result[0].qua
+     }*/
     res.render("index");
 });
 
@@ -53,6 +53,16 @@ app.get("/", (req, res) => {
 app.get('/polling', (req, res) => {
     res.send(result)
 })
+
+// route all requests to router
+const router = require('./router/router.js')
+const bodyParser = require('body-parser')
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use('/', router)
+
 
 // listen for requests on port 3000
 const port = 3000;
