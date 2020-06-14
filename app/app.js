@@ -1,4 +1,5 @@
 // init project
+let count = 0;
 const express = require('express');
 const app = express();
 app.use(express.static('./'));
@@ -51,7 +52,11 @@ app.get("/", (req, res) => {
 
 //Responds to GET requests to the root route ('/polling')
 app.get('/polling', (req, res) => {
-    res.send(result)
+    if (count === 5) {
+        count = 0;
+    }
+    res.send(result[count])
+    count++
 })
 
 // route all requests to router
@@ -62,6 +67,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use('/', router)
+
+
 
 
 // listen for requests on port 3000

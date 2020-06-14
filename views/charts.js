@@ -3,7 +3,7 @@ const sleep = time => new Promise(resolve => setTimeout(resolve, time))
 const poll = (promiseFn, time) => promiseFn().then(
     sleep(time).then(() => poll(promiseFn, time)))
 
-// Greet the World every second
+// Polling request to server
 poll(() => new Promise(() => {
 
     // get new data from mongoDB and update pie chart
@@ -11,12 +11,11 @@ poll(() => new Promise(() => {
         return response.json();
     }).then( result => {
         console.log(result)
-    });
-
-createChart("oee", 50)
-createChart("ava", 50)
-createChart("eff", 90)
-createChart("qua", 75)
+        createChart("oee", result.oee)
+        createChart("ava", result.ava)
+        createChart("eff", result.eff)
+        createChart("qua", result.qua)
+    })
 
 function createChart (name, value) {
     Highcharts.chart(name, {
@@ -65,4 +64,4 @@ function createChart (name, value) {
         }]
     });
 }
-}), 5000)
+}), 5000);
