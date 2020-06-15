@@ -6,8 +6,9 @@ const poll = (promiseFn, time) => promiseFn().then(
 // Polling request to server
 poll(() => new Promise(() => {
 
-    // get new data from mongoDB and update pie chart
-    fetch("http://localhost:3000/polling").then(response => {
+    fetch("http://localhost:3000/oee/1",{
+        headers : new Headers({'Accept':'application/json'})
+    }).then(response => {
         return response.json();
     }).then( result => {
         console.log(result)

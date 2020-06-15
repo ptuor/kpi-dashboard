@@ -1,5 +1,4 @@
 // init project
-let count = 0;
 const express = require('express');
 const app = express();
 app.use(express.static('./'));
@@ -15,29 +14,47 @@ app.engine("handlebars", hbs({
 }))
 app.set("view engine", "handlebars");
 
-//MongoDB
-mongodb = require("mongodb");
-uri = "mongodb+srv://ibw:kpi2semester@dbkpi-rcc66.gcp.mongodb.net";
-const result = [];
 
-mongodb.MongoClient.connect(uri, {
-    useUnifiedTopology: true
-}, (err, client) => {
 
-    //log error if any connection error occurred
-    if (err) return console.log(err)
+/*******************************************************/
+// MongoDB
+/*******************************************************/
+// mongodb = require("mongodb");
+// uri = "mongodb+srv://ibw:kpi2semester@dbkpi-rcc66.gcp.mongodb.net";
+// const result = [];
+//
+// mongodb.MongoClient.connect(uri, {
+//     useUnifiedTopology: true
+// }, (err, client) => {
+//
+//     //log error if any connection error occurred
+//     if (err) return console.log(err)
+//
+//     const db = client.db("kpiData");
+//     const collection = db.collection("kpiValues");
+//
+//     let data = collection.find();
+//     data.forEach((doc) => {
+//         result.push(doc)
+//     }, () => {
+//         client.close();
+//         console.log(result);
+//     });
+// });
+//
+// //Responds to GET requests to the root route ('/polling')
+// app.get('/polling', (req, res) => {
+//     if (count === 5) {
+//         count = 0;
+//     }
+//     res.send(result[count])
+//     count++
+// })
 
-    const db = client.db("kpiData");
-    const collection = db.collection("kpiValues");
 
-    let data = collection.find();
-    data.forEach((doc) => {
-        result.push(doc)
-    }, () => {
-        client.close();
-        console.log(result);
-    });
-});
+/*******************************************************/
+// routes
+/*******************************************************/
 
 //Responds to GET requests to the root route ('/')
 app.get("/", (req, res) => {
@@ -50,14 +67,7 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
-//Responds to GET requests to the root route ('/polling')
-app.get('/polling', (req, res) => {
-    if (count === 5) {
-        count = 0;
-    }
-    res.send(result[count])
-    count++
-})
+
 
 // route all requests to router
 const router = require('./router/router.js')
