@@ -5,7 +5,7 @@
   "main": "app/app.js",
   "scripts": {
     "start": "node app/app.js",
-    "test": "./node_modules/.bin/mocha src/test/*.test.mjs",
+    "test": "./node_modules/.bin/mocha test/modules/oee/*.test.js",
     "dev": "./node_modules/.bin/nodemon app/app.js"
   },
   "keywords": [],

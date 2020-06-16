@@ -1,5 +1,5 @@
 //init service
-service = require('./service.js')
+const service = require('./service.js')
 
 
 const getAllOeeValues = async (req, res, next) => {
@@ -25,7 +25,7 @@ const getLatestOeeValue = async (req, res, next) => {
     if (req.accepts('application/json')){
         try {
             service.getJSON((values) => {
-                const value = service.getLatestElementFromArray(values)
+                const value = service.getLastElementFromArray(values)
                 res.send(value)
             })
 

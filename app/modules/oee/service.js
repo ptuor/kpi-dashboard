@@ -13,13 +13,13 @@ const getJSON = (callback) => {
     }
 }
 
-const getLatestElementFromArray = (array = []) => {
-    count++
-    if (count === 5) {
-        count = 0;
+const getLastElementFromArray = (array = []) => {
+    if (array.length === 0) {
+        return undefined
+    }else {
+        return(array.slice(-1)[0])
     }
 
-    return(array[count])
 
 }
 
@@ -27,7 +27,7 @@ const getLatestElementFromArray = (array = []) => {
 
 module.exports = {
     getJSON,
-    getLatestElementFromArray
+    getLastElementFromArray
 }
 
 
