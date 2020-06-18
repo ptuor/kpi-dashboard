@@ -21,11 +21,43 @@ const getData = async (query, callback) =>{
         if (err) return console.log(err)
 
         const db = client.db("kpiData");
-        db.collection("kpiValues").find(query).toArray().then(results => callback(results) )
+        db.collection("kpiValues").find(query).toArray().then(results => {
+            let lastValue = results.slice(-1)[0]
+            if (lastValue.oee < 95){
+                lastValue.oee = lastValue.oee + 5
+            }else{
+                lastValue.oee = 0
+            }
+
+            if (lastValue.ava < 95){
+                lastValue.ava = lastValue.ava + 5
+            }else{
+                lastValue.ava = 0
+            }
+
+            if (lastValue.eff < 95){
+                lastValue.eff = lastValue.eff + 5
+            }else{
+                lastValue.eff = 0
+            }
+
+            if (lastValue.qua < 95){
+                lastValue.qua = lastValue.qua + 5
+            }else{
+                lastValue.qua = 0
+            }
+
+            lastValue._id = lastValue._id + 1
+
+            db.collection("kpiValues").insertOne(lastValue)
+            callback(results)
+        } )
 
     })
 
 }
+
+
 
 module.exports = {
     getData
