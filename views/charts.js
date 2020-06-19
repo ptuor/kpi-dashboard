@@ -34,7 +34,7 @@ function createChart(name, value) {
             type: 'pie',
             options3d: {
                 enabled: true,
-                alpha: 45,
+                alpha: 30,
                 beta: 0
             }
         },
@@ -51,9 +51,14 @@ function createChart(name, value) {
         },
         plotOptions: {
             pie: {
+                colors: [
+                    '#80ff80',
+                    '#808080'
+                ],
                 allowPointSelect: true,
                 cursor: 'pointer',
                 depth: 60,
+                innerSize: '50%',
                 dataLabels: {
                     enabled: true,
                     format: '{point.name}'
