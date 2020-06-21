@@ -1,7 +1,7 @@
 export class Controller {
 
-    constructor(datepicker) {
-        this.datepicker = datepicker
+    constructor(view) {
+        this.view = view
     }
 
     start() {
