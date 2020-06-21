@@ -6,13 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KPI Dashboard</title>
     <link rel="stylesheet" href="../views/styles.css"/>
+    <link rel="stylesheet" href="../views/navigation.css"/>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 
 </head>
 
 <body>
-    <header>HEADER</header>
+    <header>
+        <nav>
+            <ul class="Navi">
+                <li><a href="../" class="activeNavi" title="Home">Home</a></li>
+                <li><a href="views/history/history.html" title="History">History</a></li>
+            </ul>
+
+        <div class="row" id="menuToggle">
+            <input type="checkbox" id="hamburg">
+            <label for="hamburg" class="hamburg">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </label>
+
+            <div class="NaviBox">
+                <li><a href="../" class="activeNavi" title="Home">Home</a></li>
+                <li><a href="views/history/history.html" title="History">History</a></li>
+            </div>
+        </div>
+        </nav>
+    </header>
     <div id="teaser">
         <div id="oee"></div>
     </div>
