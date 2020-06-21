@@ -5,6 +5,7 @@
     <title>History</title>
     <link rel="stylesheet" href="../styles.css"/>
     <link rel="stylesheet" href="../navigation.css"/>
+    <link rel="stylesheet" href="../datepicker.css"/>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 
@@ -45,9 +46,21 @@
         <div id="qua"></div>
     </div>
     <div id="config">
-        <input type="text" class="fromDate" placeholder="Please select Date Time" data-input>
-        <input type="text" class="toDate" placeholder="Please select Date Time" data-input>
-        <input type="button" class="refreshDate">
+        <div class="datepickerGroup">
+            <input type="text" class="fromDate" placeholder="Please select Date Time" data-input>
+            <span class="bar"></span>
+            <label class="input-label">From</label>
+        </div>
+
+        <div class="datepickerGroup">
+            <input type="text" class="toDate" placeholder="Please select Date Time" data-input>
+            <span class="bar"></span>
+            <label class="input-label">To</label>
+        </div>
+
+        <div class="datepickerGroup">
+            <input type="button" class="refreshDate" value="Refresh Dashboard">
+        </div>
     </div>
     <div id="trend"></div>
 

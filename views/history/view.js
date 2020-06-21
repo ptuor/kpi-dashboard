@@ -1,22 +1,27 @@
 export class View {
-    constructor(datePicerRootSelector){
-        this.maxDate = new Date;
+    constructor(datePickerRootSelector){
 
-        this.datePickerTo = flatpickr(datePicerRootSelector + " .toDate", {
+        let datePickerFrom = flatpickr(datePickerRootSelector + " .fromDate", {
+            enableTime: true,
+            time_24hr: true,
+            "maxDate": new Date().fp_incr(0),
+            dateFormat: "d.m.Y H:i",
+            onClose: function(selectedDates, dateStr, instance) {
+                datePickerTo.set('minDate', dateStr)
+            }
+        });
+
+        let datePickerTo = flatpickr(datePickerRootSelector + " .toDate", {
             enableTime: true,
             "maxDate": new Date().fp_incr(0),
             time_24hr: true,
-            dateFormat: "d.m.Y H:i"
+            dateFormat: "d.m.Y H:i",
+            onClose: function(selectedDates, dateStr, instance) {
+                datePickerFrom.set('maxDate', dateStr)
+            }
         });
 
-        this.datePickerFrom = flatpickr(datePicerRootSelector + " .fromDate", {
-            enableTime: true,
-            "maxDate": this.datePickerTo.selectedDates[0],
-            time_24hr: true,
-            dateFormat: "d.m.Y H:i"
-        });
-
-        const refreshDates = document.querySelector(rootSelector + " .refreshDate")
+        const refreshDates = document.querySelector(datePickerRootSelector + " .refreshDate")
         this.addRfreshEventlistener(refreshDates)
 
     }

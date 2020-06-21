@@ -8,5 +8,4 @@ export class Controller {
         console.log("start controller")
     }
 
-
 }
