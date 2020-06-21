@@ -6,8 +6,9 @@ export class View {
             time_24hr: true,
             "maxDate": new Date().fp_incr(0),
             dateFormat: "d.m.Y H:i",
-            onClose: function(selectedDates, dateStr, instance) {
+            onClose: (selectedDates, dateStr, instance) => {
                 datePickerTo.set('minDate', dateStr)
+                this.dateFrom = dateStr
             }
         });
 
@@ -16,8 +17,9 @@ export class View {
             "maxDate": new Date().fp_incr(0),
             time_24hr: true,
             dateFormat: "d.m.Y H:i",
-            onClose: function(selectedDates, dateStr, instance) {
+            onClose: (selectedDates, dateStr, instance) => {
                 datePickerFrom.set('maxDate', dateStr)
+                this.dateTo = dateStr
             }
         });
 
@@ -30,7 +32,10 @@ export class View {
 
     addRfreshEventlistener(button){
         button.addEventListener('click', (evt)=>{
-            this.onRefreshHandler()
+            const result =this.onRefreshHandler(this.dateFrom, this.dateTo)
+            if (result.message !== ""){
+                alert(result.message)
+            }
         })
     }
 
