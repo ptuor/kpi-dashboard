@@ -140,7 +140,7 @@ function createTrend(oeeC, avaC, effC, quaC) {
             color: "#ff0000"
 
         }],
-        responsive: {
+/*        responsive: {
             rules: [{
                 condition: {
                     maxWidth: 500
@@ -153,7 +153,7 @@ function createTrend(oeeC, avaC, effC, quaC) {
                     }
                 }
             }]
-        }
+        }*/
     });
 }
 
