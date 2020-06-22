@@ -122,6 +122,7 @@ function createTrend(oeeC, avaC, effC, quaC) {
             }
         },
         series: [{
+            type: 'column',
             name: 'OEE',
             data: [oeeC],
             color: "#80ff80"
