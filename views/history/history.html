@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+    <link rel="stylesheet" href="../styles.css"/>
+    <link rel="stylesheet" href="../navigation.css"/>
+    <link rel="stylesheet" href="../datepicker.css"/>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="Navi">
+                <li><a href="../../"  title="Home">Home</a></li>
+                <li><a href="../history/history.html" class="activeNavi" title="History">History</a></li>
+            </ul>
+
+            <div class="row" id="menuToggle">
+                <input type="checkbox" id="hamburg">
+                <label for="hamburg" class="hamburg">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </label>
+
+                <div class="NaviBox">
+                    <li><a href="../../"  title="Home">Home</a></li>
+                    <li><a href="../history/history.html" class="activeNavi" title="History">History</a></li>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="teaser">
+        <div id="oee"></div>
+    </div>
+    <div id="kpi">
+        <div id="ava"></div>
+        <div id="eff"></div>
+        <div id="qua"></div>
+    </div>
+    <div id="config">
+        <div class="datepickerGroup">
+            <input type="text" class="fromDate" placeholder="Please select Date Time" data-input>
+            <span class="bar"></span>
+            <label class="input-label">From</label>
+        </div>
+
+        <div class="datepickerGroup">
+            <input type="text" class="toDate" placeholder="Please select Date Time" data-input>
+            <span class="bar"></span>
+            <label class="input-label">To</label>
+        </div>
+
+        <div class="datepickerGroup">
+            <input type="button" class="refreshDate" value="Refresh Dashboard">
+        </div>
+    </div>
+    <div id="trend"></div>
+
+    <footer>FOOTER</footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
