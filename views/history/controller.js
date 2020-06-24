@@ -1,29 +1,46 @@
 export default class Controller {
 
-    constructor(view) {
-        this.view = view
+    constructor(view, isTest=false) {
+        this.erroeMessageForInvalidDates = "Please select a Date!"
 
-        view.registerRefreshHandler((fromDate, toDate)=>{
-            console.log(fromDate)
-            console.log(toDate)
-            const allertMessage = "Please select a Date!"
-            if (fromDate === undefined){
-                return {
-                    message: allertMessage
-                }
+        if (isTest === false){
+            this.view = view
 
-            } else if (toDate === undefined){
-                return {
-                    message: allertMessage
-                }
+            view.registerRefreshHandler((fromDate, toDate)=>{
+                return this.getValuesByFromAndToDate(fromDate,toDate)
+            })
+        }
+    }
 
-            } else {
 
-                return {
-                    message: ""
-                }
+
+    validateDateAndTime(fromDate, toDate){
+        if (fromDate === undefined){
+            return false
+
+        } else if (toDate === undefined){
+            return false
+
+        } else {
+
+            return true
+        }
+    }
+
+    getValuesByFromAndToDate(fromDate, toDate){
+        const isValidDateTime = this.validateDateAndTime(fromDate,toDate)
+        if (isValidDateTime){
+            //TODO get values from server
+
+            // return empty string if date and time is valid
+            return {
+                message: ""
             }
-        })
+        }else{
+            return {
+                message: "Please select a Date!"
+            }
+        }
 
     }
 
