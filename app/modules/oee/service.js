@@ -1,9 +1,8 @@
 
 const oeeDb = require('../../models/oeeExample.js')
-let count = 0;
 
 
-const getJSON = (callback) => {
+const getAllValues = (callback) => {
     try {
         oeeDb.getData({}, (result)=> callback(result))
     } catch (e) {
@@ -23,10 +22,27 @@ const getLastElementFromArray = (array = []) => {
 
 }
 
+const getValuesByDate = (callback, fromDate, toDate) => {
 
+    const query = {
+        createdAt: {
+            $gte: new Date(fromDate),
+            $lte: new Date(toDate)
+        }
+    }
+
+    try {
+        oeeDb.getDataByQuery(query, (result)=> callback(result))
+    } catch (e) {
+        console.log(e)
+        throw new Error(e.message)
+
+    }
+}
 
 module.exports = {
-    getJSON,
+    getAllValues,
+    getValuesByDate,
     getLastElementFromArray
 }
 

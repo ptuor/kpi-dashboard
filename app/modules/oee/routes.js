@@ -12,7 +12,10 @@ const controller  = require('./controller.js')
 router.get('/', controller.getAllOeeValues)
 
 // get last oee value
-router.get('/1', controller.getLatestOeeValue)
+router.get('/live', controller.getLatestOeeValue)
+
+// get history
+router.get('/history', controller.getValuesByDate)
 
 
 module.exports = router

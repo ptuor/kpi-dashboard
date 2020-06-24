@@ -6,7 +6,7 @@ const getAllOeeValues = async (req, res, next) => {
 
      if (req.accepts('application/json')){
          try {
-             service.getJSON((values) => {
+             service.getAllValues((values) => {
                  res.send(values)
              })
 
@@ -24,7 +24,7 @@ const getLatestOeeValue = async (req, res, next) => {
 
     if (req.accepts('application/json')){
         try {
-            service.getJSON((values) => {
+            service.getAllValues((values) => {
                 const value = service.getLastElementFromArray(values)
                 res.send(value)
             })
@@ -39,10 +39,28 @@ const getLatestOeeValue = async (req, res, next) => {
 
 }
 
+const getValuesByDate = async (req, res, next) => {
+
+    if (req.accepts('application/json')){
+        const fromDate = req.query.from
+        const toDate = req.query.to
+        try {
+            service.getValuesByDate((values) => {res.send(values)}, fromDate, toDate)
+        }catch (e) {
+            console.log(e)
+            res.sendStatus(500)
+        }
+    } else {
+        res.sendStatus(406)
+    }
+
+}
+
 
 module.exports = {
     getAllOeeValues,
-    getLatestOeeValue
+    getLatestOeeValue,
+    getValuesByDate
 }
 
 

@@ -10,7 +10,7 @@ const poll = (promiseFn, time) => promiseFn().then(
     sleep(time).then(() => poll(promiseFn, time)))
 
 poll(() => new Promise(() => {
-    fetch("http://localhost:3000/oee/1", {
+    fetch("http://localhost:3000/oee/live", {
         headers: new Headers({'Accept': 'application/json'})
     }).then(response => {
         return response.json()
