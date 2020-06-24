@@ -1,4 +1,4 @@
-export class View {
+export default class View {
     constructor(datePickerRootSelector){
 
         let datePickerFrom = flatpickr(datePickerRootSelector + " .fromDate", {
@@ -218,7 +218,6 @@ export class View {
             }
         })
     }
-
-
-
 }
+
+

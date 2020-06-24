@@ -6,12 +6,14 @@
   "scripts": {
     "start": "node app/app.js",
     "test": "./node_modules/.bin/mocha test/modules/oee/*.test.js",
+    "test:views": "./node_modules/.bin/mocha -r esm test/views/*/*.test.js",
     "dev": "./node_modules/.bin/nodemon app/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
     "flatpickr": "^4.6.3",
@@ -19,6 +21,7 @@
     "mongodb": "^3.5.7"
   },
   "devDependencies": {
+    "selenium-webdriver": "3.6.0",
     "nodemon": "^2.0.4"
   }
 }
