@@ -3,6 +3,7 @@ export default class Controller {
 
     constructor(view, data, isTest=false) {
         this.erroeMessageForInvalidDates = "Please select a Date!"
+        this.erroeMessageNoValues = "No values found in this time range"
 
         if (isTest === false){
             this.view = view
@@ -33,24 +34,34 @@ export default class Controller {
         if (isValidDateTime){
 
             const allOeeValues = await this.data.getValuesByDates(fromDate.toISOString(),toDate.toISOString())
-            const averageOeeValues = {
-                oee: 0,
-                ava : 0,
-                eff:0,
-                qua:0
+
+            // check if any values have been returned
+            if (allOeeValues.length === 0){
+                return {
+                    message: this.erroeMessageNoValues
+                }
+            }else{
+                const averageOeeValues = {
+                    oee: 0,
+                    ava : 0,
+                    eff:0,
+                    qua:0
+                }
+
+                averageOeeValues.oee = this.calculateAverageOeeValues(allOeeValues.map(values => values.oee))
+                averageOeeValues.ava = this.calculateAverageOeeValues(allOeeValues.map(values => values.ava))
+                averageOeeValues.eff = this.calculateAverageOeeValues(allOeeValues.map(values => values.eff))
+                averageOeeValues.qua = this.calculateAverageOeeValues(allOeeValues.map(values => values.qua))
+
+                this.updateView(averageOeeValues, allOeeValues)
+
+                // return empty string if date and time is valid
+                return {
+                    message: ""
+                }
             }
 
-            averageOeeValues.oee = this.calculateAverageOeeValues(allOeeValues.map(values => values.oee))
-            averageOeeValues.ava = this.calculateAverageOeeValues(allOeeValues.map(values => values.ava))
-            averageOeeValues.eff = this.calculateAverageOeeValues(allOeeValues.map(values => values.eff))
-            averageOeeValues.qua = this.calculateAverageOeeValues(allOeeValues.map(values => values.qua))
 
-            this.updateView(averageOeeValues, allOeeValues)
-
-            // return empty string if date and time is valid
-            return {
-                message: ""
-            }
 
         }else{
             return {
