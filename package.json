@@ -22,7 +22,9 @@
     "mongodb": "^3.5.7"
   },
   "devDependencies": {
-    "selenium-webdriver": "3.6.0",
-    "nodemon": "^2.0.4"
+    "chai": "^4.2.0",
+    "chai-spies": "^1.0.0",
+    "nodemon": "^2.0.4",
+    "selenium-webdriver": "3.6.0"
   }
 }

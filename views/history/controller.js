@@ -1,21 +1,15 @@
 //import {Data as LocalData}  from './data.remote.js'
 export default class Controller {
 
-    constructor(view, data, isTest=false) {
+    constructor(view, data) {
         this.erroeMessageForInvalidDates = "Please select a Date!"
         this.erroeMessageNoValues = "No values found in this time range"
 
-        if (isTest === false){
-            this.view = view
-            this.data = data
-            view.registerRefreshHandler((fromDate, toDate)=>{
-                return this.getValuesByFromAndToDate(fromDate,toDate)
-            })
-
-        } else {
-            // use only data for tests
-            this.data = data
-        }
+        this.view = view
+        this.data = data
+        view.registerRefreshHandler((fromDate, toDate)=>{
+            return this.getValuesByFromAndToDate(fromDate,toDate)
+        })
 
     }
 
