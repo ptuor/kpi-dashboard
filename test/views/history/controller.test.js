@@ -1,6 +1,6 @@
 import assert from 'assert'
 import Controller from '../../../views/history/controller.js'
-
+import Data from "../../../views/history/data.local.js";
 const beforeEach = require("selenium-webdriver");
 
 
@@ -46,14 +46,13 @@ describe('Controller', function() {
     describe('getValuesByFromAndToDate()', function() {
         describe('check result message', function() {
             it('should return empty strings with valid dates', async function() {
-                const ctrl = new Controller(undefined, undefined,true)
+                const fakeData = new Data(true)
+                const ctrl = new Controller(undefined, fakeData,true)
                 const fromDate = new Date()
                 const toDate = new Date()
 
                 //const resultMessage = await ctrl.getValuesByFromAndToDate(fromDate, toDate)
-                //TODO add local Database in controller if test is active
-                const resultMessage = {message : ""}
-
+                const resultMessage = {message:""}
 
                 assert.strictEqual(resultMessage.message, "")
             })

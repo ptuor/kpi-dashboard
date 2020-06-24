@@ -13,7 +13,8 @@ export default class Controller {
             })
 
         } else {
-           // this.data = new LocalData
+            // use only data for tests
+            this.data = data
         }
 
     }
@@ -34,7 +35,7 @@ export default class Controller {
         if (isValidDateTime){
 
             const allOeeValues = await this.data.getValuesByDates(fromDate.toISOString(),toDate.toISOString())
-
+            console.log(allOeeValues)
             // check if any values have been returned
             if (allOeeValues.length === 0){
                 return {
