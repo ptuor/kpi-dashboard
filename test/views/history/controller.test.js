@@ -8,7 +8,7 @@ describe('Controller', function() {
     describe('isValidDateAndTime()', function() {
 
             it('should return true with valid dates', function() {
-                const ctrl = new Controller(undefined, true)
+                const ctrl = new Controller(undefined, undefined,true)
                 const fromDate = new Date()
                 const toDate = new Date()
 
@@ -20,7 +20,7 @@ describe('Controller', function() {
 
 
             it('should return false with invalid from date', function() {
-                const ctrl = new Controller(undefined, true)
+                const ctrl = new Controller(undefined, undefined,true)
                 const fromDate = undefined
                 const toDate = new Date()
 
@@ -31,7 +31,7 @@ describe('Controller', function() {
 
 
             it('should return false with invalid to date', function() {
-                const ctrl = new Controller(undefined, true)
+                const ctrl = new Controller(undefined, undefined,true)
                 const fromDate = new Date()
                 const toDate = undefined
 
@@ -46,7 +46,7 @@ describe('Controller', function() {
     describe('getValuesByFromAndToDate()', function() {
         describe('check result message', function() {
             it('should return empty strings with valid dates', function() {
-                const ctrl = new Controller(undefined, true)
+                const ctrl = new Controller(undefined, undefined,true)
                 const fromDate = new Date()
                 const toDate = new Date()
 
@@ -57,7 +57,7 @@ describe('Controller', function() {
 
 
             it('should return message strings with invalid from date', function() {
-                const ctrl = new Controller(undefined, true)
+                const ctrl = new Controller(undefined, undefined,true)
                 const fromDate = undefined
                 const toDate = new Date()
 
@@ -67,7 +67,7 @@ describe('Controller', function() {
             })
 
             it('should return message strings with invalid from date', function() {
-                const ctrl = new Controller(undefined, true)
+                const ctrl = new Controller(undefined, undefined,true)
                 const fromDate = new Date()
                 const toDate = undefined
 

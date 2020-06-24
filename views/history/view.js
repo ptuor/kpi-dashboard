@@ -8,7 +8,7 @@ export default class View {
             dateFormat: "d.m.Y H:i",
             onClose: (selectedDates, dateStr, instance) => {
                 datePickerTo.set('minDate', dateStr)
-                this.dateFrom = dateStr
+                this.dateFrom = selectedDates[0]
             }
         });
 
@@ -19,20 +19,25 @@ export default class View {
             dateFormat: "d.m.Y H:i",
             onClose: (selectedDates, dateStr, instance) => {
                 datePickerFrom.set('maxDate', dateStr)
-                this.dateTo = dateStr
+                this.dateTo = selectedDates[0]
             }
         });
 
         const refreshDates = document.querySelector(datePickerRootSelector + " .refreshDate")
-        this.addRfreshEventlistener(refreshDates)
+        this.addRefreshEventListener(refreshDates)
 
+
+        this.createChart("oee", 0)
+        this.createChart("ava", 0)
+        this.createChart("eff", 0)
+        this.createChart("qua", 0)
+        this.createTrend(0, 0, 0, 0)
     }
 
 
-
-    addRfreshEventlistener(button){
-        button.addEventListener('click', (evt)=>{
-            const result =this.onRefreshHandler(this.dateFrom, this.dateTo)
+    addRefreshEventListener(button){
+        button.addEventListener('click', async (evt)=>{
+            const result = await this.onRefreshHandler(this.dateFrom, this.dateTo)
             if (result.message !== ""){
                 alert(result.message)
             }
@@ -43,7 +48,6 @@ export default class View {
     registerRefreshHandler(onRefreshHandler){
         this.onRefreshHandler = onRefreshHandler
     }
-
 
 
 
@@ -201,23 +205,7 @@ export default class View {
 
     }
 
-    render(items){
-        items.forEach(item => this.addItemToList(item))
-    }
 
-    addEventListeners(newField) {
-        newField.addEventListener('keypress', (ev) => {
-            if (ev.key === 'Enter') {
-                const text = ev.target.value
-                const newItem = {description: text}
-
-                const result = this.onAddItemHandler(newItem)
-                if(result.message !== ""){
-                    alert(result.message)
-                }
-            }
-        })
-    }
 }
 
 
