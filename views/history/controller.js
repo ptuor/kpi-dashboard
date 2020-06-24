@@ -15,16 +15,12 @@ export default class Controller {
 
 
     validateDateAndTime(fromDate, toDate){
-        if (fromDate === undefined){
+        if (    (fromDate === undefined)
+            ||  !(fromDate instanceof Date)){
             return false
 
-        } else if (toDate === undefined){
-            return false
-
-        } else {
-
-            return true
-        }
+        } else return !((toDate === undefined)
+            || !(toDate instanceof Date));
     }
 
     getValuesByFromAndToDate(fromDate, toDate){
@@ -44,8 +40,6 @@ export default class Controller {
 
     }
 
-    start() {
 
-    }
 
 }

@@ -57,7 +57,6 @@ describe('service', function () {
             });
         })
 
-
     })
 })
 
