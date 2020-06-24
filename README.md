@@ -13,13 +13,17 @@
 
 
 ### Usage
-Build & serve web application: `npm run start`
-Build & serve web application in development mode: `npm run dev`
+1. Build & serve web application: `npm run start`
+
+    Build & serve web application in development mode: `npm run dev`
+    
+1. Open browser with URL: http://locallhost:3000
+
+
 
 ### Unit tests
 run all unit tests : `npm run test`
 
 run all tests for Server side modules: `npm run test:modules`
 run all tests for Client side controllers: `npm run test:viewControllers`
-
 
