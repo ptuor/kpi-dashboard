@@ -1,0 +1,155 @@
+
+/****************************/
+/* general navigation */
+header nav{
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 99;
+    list-style-type: none;
+}
+
+nav li {
+    list-style-type: none;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #111;
+}
+
+
+/****************************/
+/* specific for big navigation */
+.Navi {
+    float: left;
+    height: 50px ;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.Navi li {
+    float: left;
+}
+
+.Navi li a{
+    text-align: center;
+    height: 22px ;
+    padding: 14px 16px;
+}
+
+
+nav li a.activeNavi {
+    color: #80ff80;
+}
+
+/* generally hide the navigation */
+.Navi{
+    visibility: hidden;
+}
+
+/****************************/
+/* specific for hamburger navigation */
+
+.NaviBox li a{
+    padding: 5px 16px;
+}
+
+label.hamburg {
+    display: block;
+    background: #555; width: 45px; height: 35px;
+    position: relative;
+    top: 8px;
+    margin-left: auto;
+    margin-bottom: auto;
+    margin-right: 8px;
+    border-radius: 4px;
+}
+
+input#hamburg {display:none}
+
+.line {
+    position: absolute;
+    left:10px;
+    height: 2px; width: 25px;
+    background: #fff; border-radius: 1px;
+    display: block;
+    transition: 0.4s;
+    transform-origin: center;
+}
+
+.line:nth-child(1) { top: 8px; }
+.line:nth-child(2) { top: 16px; }
+.line:nth-child(3) { top: 24px; }
+
+#hamburg:checked + .hamburg .line:nth-child(1){
+    transform: translateY(8px) rotate(-45deg);
+}
+
+#hamburg:checked + .hamburg .line:nth-child(2){
+    opacity:0;
+}
+
+#hamburg:checked + .hamburg .line:nth-child(3){
+    transform: translateY(-8px) rotate(45deg);
+}
+
+
+
+.NaviBox{
+    float: right;
+    position: fixed;
+    top: 50px;
+    left: auto;
+    right: -200px;
+    width: 200px;
+    z-index: 99;
+    background-color: #333;
+    height: 200px ;
+    transition: 0.5s;
+}
+
+
+#menuToggle input:checked ~ .NaviBox
+{
+    right: 0px;
+}
+
+
+
+
+
+@media only screen and (min-width:480px){
+}
+
+@media only screen and (min-width:640px){
+    /* show navigation from this sice of screen */
+    .Navi{
+        visibility: visible;
+    }
+
+
+    .row{
+        visibility: hidden;
+        transition: 0.0s;
+    }
+
+}
+
+@media only screen and (min-width:728px){
+}
+
+@media only screen and (min-width:921px){
+}
+
+@media only screen and (min-width:1200px){
+}
+
+@media only screen and (min-width:1920px){
+}

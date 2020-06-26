@@ -5,19 +5,26 @@
   "main": "app/app.js",
   "scripts": {
     "start": "node app/app.js",
-    "test": "./node_modules/.bin/mocha src/test/*.test.mjs",
+    "test": "npm run test:viewControllers && npm run test:modules",
+    "test:modules": "./node_modules/.bin/mocha test/modules/oee/*.test.js",
+    "test:viewControllers": "./node_modules/.bin/mocha -r esm test/views/*/*.test.js",
     "dev": "./node_modules/.bin/nodemon app/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mocha": "^7.2.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
+    "flatpickr": "^4.6.3",
+    "mocha": "^7.2.0",
     "mongodb": "^3.5.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "chai": "^4.2.0",
+    "chai-spies": "^1.0.0",
+    "nodemon": "^2.0.4",
+    "selenium-webdriver": "3.6.0"
   }
 }

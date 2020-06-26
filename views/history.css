@@ -1,0 +1,48 @@
+body {
+    display: grid;
+    grid-template-areas:
+            "header header"
+            "config1 config1"
+            "teaser kpi"
+            "config2 trend"
+            "footer footer";
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 3rem  0.2fr 1fr 1fr 3rem;
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 992px) {
+    body {
+        grid-template-areas:
+                "header header"
+                "config1 config1"
+                "teaser kpi"
+                "trend trend"
+                "config2 config2"
+                "footer footer";
+        grid-template-rows: 3rem 0.5fr 1fr 1fr 0.5fr 3rem;
+        height: auto;
+        overflow: auto;
+    }
+}
+
+@media (max-width: 776px) {
+    body {
+        grid-template-areas:
+                "header"
+                "config1"
+                "teaser"
+                "kpi"
+                "trend"
+                "config2"
+                "footer";
+        grid-template-rows: 3rem 0.5fr 1fr 1fr 1fr 0.5fr 3rem;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    /*display none oder charts untereinander?*/
+}

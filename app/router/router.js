@@ -7,6 +7,5 @@ const router = express.Router()
 const oeeRouter  = require('../modules/oee/routes.js')
 router.use('/oee', oeeRouter)
 
-
 module.exports = router
 

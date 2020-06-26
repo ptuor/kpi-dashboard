@@ -14,45 +14,17 @@ app.engine("handlebars", hbs({
 }))
 app.set("view engine", "handlebars");
 
-//MongoDB
-mongodb = require("mongodb");
-uri = "mongodb+srv://ibw:kpi2semester@dbkpi-rcc66.gcp.mongodb.net";
-const result = [];
 
-mongodb.MongoClient.connect(uri, {
-    useUnifiedTopology: true
-}, (err, client) => {
 
-    //log error if any connection error occurred
-    if (err) return console.log(err)
-
-    const db = client.db("kpiData");
-    const collection = db.collection("kpiValues");
-
-    let data = collection.find();
-    data.forEach((doc) => {
-        result.push(doc)
-    }, () => {
-        client.close();
-        console.log(result);
-    });
-});
+/*******************************************************/
+// routes
+/*******************************************************/
 
 //Responds to GET requests to the root route ('/')
 app.get("/", (req, res) => {
-    /* let dataToSend = {
-         "oee": result[0].oee,
-         "ava": result[0].ava,
-         "eff": result[0].eff,
-         "qua": result[0].qua
-     }*/
     res.render("index");
 });
 
-//Responds to GET requests to the root route ('/polling')
-app.get('/polling', (req, res) => {
-    res.send(result)
-})
 
 // route all requests to router
 const router = require('./router/router.js')
@@ -62,6 +34,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use('/', router)
+
+
 
 
 // listen for requests on port 3000
