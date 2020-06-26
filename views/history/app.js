@@ -4,6 +4,6 @@ import Controller from './controller.js'
 import Data from './data.remote.js'
 
 
-const view = new View("#config1")
+const view = new View("#config")
 const data = new Data("http://localhost:3000")
 const controller = new Controller(view, data)

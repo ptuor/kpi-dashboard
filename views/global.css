@@ -36,16 +36,12 @@ footer {
     justify-content: center;
 }
 
-#config1 {
+#config {
     display: flex;
-    grid-area: config1;
+    grid-area: config;
 }
 
-#config2 {
-    grid-area: config2;
-}
-
-#kpi > div, #config1 > div {
+#kpi > div, #config > div {
     display: grid;
     flex: 1;
     align-items: center;
