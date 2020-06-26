@@ -1,3 +1,4 @@
+
 let count = 0
 let oeeArray = []
 let avaArray = []
@@ -15,7 +16,9 @@ poll(() => new Promise(() => {
     }).then(response => {
         return response.json()
     }).then(result => {
-        console.log(result)
+
+        thresholdMessage(result.oee)
+
         oeeArray.push(result.oee)
         avaArray.push(result.ava)
         effArray.push(result.eff)
@@ -187,5 +190,15 @@ function updateTrend(oeeT, avaT, effT, quaT) {
             values
         )
     }
+}
 
+function thresholdMessage(oee) {
+    if (oee < 30) {
+        VanillaToasts.create({
+            title: 'Warning',
+            type: 'warning',
+            text: 'The OEE value is very low',
+            timeout: 4000
+        });
+    }
 }
