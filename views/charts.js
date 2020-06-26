@@ -93,7 +93,9 @@ function createChart(name, value) {
 // create Trend
 function createTrend(oeeC, avaC, effC, quaC) {
     Highcharts.chart('trend', {
-
+        mapNavigation: {
+            enableMouseWheelZoom: true
+        },
         yAxis: {
             title: {
                 text: 'Value in percent [%]'

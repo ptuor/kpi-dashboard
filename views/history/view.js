@@ -120,7 +120,9 @@ export default class View {
     // create Trend
     createTrend(oeeC, avaC, effC, quaC) {
         Highcharts.chart('trend', {
-
+            mapNavigation: {
+                enableMouseWheelZoom: true
+            },
             yAxis: {
                 title: {
                     text: 'Value in percent [%]'
