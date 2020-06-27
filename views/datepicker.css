@@ -17,7 +17,7 @@ input:focus {
 }
 
 label.input-label {
-    color: #616161;
+    color: rgba(128, 128, 128, 0.75);
     position: absolute;
 }
 
@@ -27,7 +27,7 @@ input:focus ~ label.input-label {
 
 input[readonly] ~ label.input-label {
     top: -15px;
-    font-size: 0.9em;
+    font-size: 1.9em;
 }
 
 .bar {

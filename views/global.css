@@ -18,7 +18,7 @@ footer {
 }
 
 #teaser {
-    display: grid;
+    display: flex;
     grid-area: teaser;
     align-items: center;
     justify-content: center;
@@ -37,12 +37,14 @@ footer {
 }
 
 #config {
-    display: flex;
-    grid-area: config;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: 1fr;
+    gap: 2px 2px;
 }
 
 #kpi > div, #config > div {
-    display: grid;
+    display: flex;
     flex: 1;
     align-items: center;
     justify-content: center;
