@@ -29,7 +29,6 @@ export default class Controller {
         if (isValidDateTime){
 
             const allOeeValues = await this.data.getValuesByDates(fromDate.toISOString(),toDate.toISOString())
-            console.log(allOeeValues)
             // check if any values have been returned
             if (allOeeValues.length === 0){
                 return {
@@ -72,7 +71,11 @@ export default class Controller {
         this.view.updateChart("ava", 1, averageOeeValues.ava)
         this.view.updateChart("eff", 2, averageOeeValues.eff)
         this.view.updateChart("qua", 3, averageOeeValues.qua)
-        this.view.updateTrend((oeeArray.map(values => values.oee)), (oeeArray.map(values => values.ava)), (oeeArray.map(values => values.eff)), (oeeArray.map(values => values.qua)))
+       this.view.updateTrend(
+           (oeeArray.map(values => [Date.parse(values.createdAt), values.oee])),
+           (oeeArray.map(values => [Date.parse(values.createdAt), values.ava])),
+           (oeeArray.map(values => [Date.parse(values.createdAt), values.eff])),
+           (oeeArray.map(values => [Date.parse(values.createdAt), values.qua])))
     }
 
 
