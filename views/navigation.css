@@ -23,6 +23,7 @@ nav li a:hover {
 }
 
 
+
 /****************************/
 /* specific for big navigation */
 .Navi {
@@ -51,6 +52,12 @@ nav li a.activeNavi {
 /* generally hide the navigation */
 .Navi{
     visibility: hidden;
+}
+
+
+.Navi li svg{
+    width: 24px;
+    height: 24px;
 }
 
 /****************************/
