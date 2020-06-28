@@ -25,10 +25,10 @@ poll(() => new Promise(() => {
         quaArray.push(result.qua)
 
         if (count === 0) {
-            createChart("OEE", result.oee)
-            createChart("AVA", result.ava)
-            createChart("EFF", result.eff)
-            createChart("QUA", result.qua)
+            createChart("OEE", result.oee, 40)
+            createChart("AVA", result.ava, 80)
+            createChart("EFF", result.eff, 80)
+            createChart("QUA", result.qua, 80)
             createTrend(result.oee, result.ava, result.eff, result.qua)
         } else {
             updateChart( "OEE",0, result.oee)
@@ -42,7 +42,7 @@ poll(() => new Promise(() => {
 }), 5000);
 
 // create charts
-function createChart(name, value) {
+function createChart(name, value, labelPosition) {
     const fillerValue = 100 - value
 
     Highcharts.chart(name, {
@@ -56,7 +56,7 @@ function createChart(name, value) {
         },
         title: {
             text: `${name}\u00A0${value}%`,
-            y: 40,
+            y: labelPosition,
             style: {
                 color: '#80ff80',
                 font: 'bold 25px "Trebuchet MS", Verdana, sans-serif'
@@ -93,65 +93,95 @@ function createTrend(oeeC, avaC, effC, quaC) {
             enableMouseWheelZoom: true
         },
         yAxis: {
+            max: 100,
             title: {
-                text: 'Value in percent [%]'
+                text: 'Value in percent [%]',
+                style: {
+                    font: 'bold 14px "Trebuchet MS", Verdana, sans-serif'
+                }
             }
         },
         xAxis: {
-            title: {
-                text: 'Time in seconds [s]'
+            type: 'datetime',
+            // dateTimeLabelFormats: { // don't display the dummy year
+            //     month: '%e. %b',
+            //     year: '%b'
+            // },
+            dateTimeLabelFormats:{
+                second: '%H:%M',
+                minute: '%H:%M',
+                hour: '%e. %b / %H:%M',
+                day: '%e. %b',
+                week: '%e. %b',
+                month: '%b \'%y',
+                year: '%Y'
             },
-            accessibility: {
-                rangeDescription: 'Range: 5 to 10'
+            title: {
+                text: 'Date',
+                style: {
+                    font: 'bold 14px "Trebuchet MS", Verdana, sans-serif'
+                }
             }
         },
         legend: {
             layout: 'vertical',
             align: 'right',
-            verticalAlign: 'middle'
+            verticalAlign: 'middle',
+            itemStyle: {
+                color: '#808080',
+                fontWeight: 'bold',
+                fontSize: '14px'
+            },
+            symbolRadius: 0
         },
         plotOptions: {
             series: {
-                label: {
-                    connectorAllowed: false
-                },
                 pointStart: 0,
-                pointInterval: 5
+                pointInterval: 5,
             }
         },
         series: [{
             type: 'column',
             name: 'OEE',
             data: [oeeC],
-            color: "#80ff80"
+            color: "#80ff80",
+            marker: {
+                symbol: 'none'
+            }
         }, {
             name: 'AVA',
             data: [avaC],
-            color: "#ffff33"
+            color: "#ffff33",
+            marker: {
+                symbol: 'circle'
+            }
         }, {
             name: 'EFF',
             data: [effC],
-            color: "#ff9933"
+            color: "#ff9933",
+            marker: {
+                symbol: 'circle'
+            }
         }, {
             name: 'QUA',
             data: [quaC],
-            color: "#ff0000"
-
+            color: "#ff0000",
+            marker: {
+                symbol: 'circle'
+            }
         }],
-/*        responsive: {
+        responsive: {
             rules: [{
                 condition: {
-                    maxWidth: 500
+                    maxWidth: 480
                 },
                 chartOptions: {
                     legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
+                        enabled: false
                     }
                 }
             }]
-        }*/
+        }
     });
 }
 
@@ -194,4 +224,8 @@ function thresholdMessage(oee) {
             timeout: 2000
         });
     }
+}
+
+window.onresize = function() {
+    location.reload()
 }

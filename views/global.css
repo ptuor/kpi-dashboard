@@ -19,16 +19,18 @@ footer {
 
 #teaser {
     display: flex;
-    grid-area: teaser;
     position: relative;
+    grid-area: teaser;
     align-items: center;
     justify-content: center;
+    padding: 0.5rem;
 }
 
 #kpi {
     display: flex;
     grid-area: kpi;
     justify-content: space-evenly;
+    padding: 0.5rem 5rem 0.5rem 0.5rem;
 }
 
 #trend {
@@ -36,6 +38,7 @@ footer {
     grid-area: trend;
     align-items: center;
     justify-content: center;
+    padding: 0.5rem;
 }
 
 #config {
@@ -50,11 +53,6 @@ footer {
     flex: 1;
     align-items: center;
     justify-content: center;
-    width: 100%;
-}
-
-.highcharts-credits, .highcharts-background {
-    display: none;
 }
 
 .highcharts-title {
@@ -63,3 +61,19 @@ footer {
     align-items: center;
     justify-content: center;
 }
+
+.highcharts-credits, .highcharts-background, #trend .highcharts-title{
+    display: none;
+}
+
+.highcharts-legend-item {
+    padding: 2rem;
+}
+
+/*.highcharts-container {
+    width: 100%;
+}
+.highcharts-container svg {
+    width: 100%;
+    display: flex;
+}*/

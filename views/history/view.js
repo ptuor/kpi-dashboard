@@ -27,10 +27,10 @@ export default class View {
         this.addRefreshEventListener(refreshDates)
 
 
-        this.createChart("oee", 0)
-        this.createChart("ava", 0)
-        this.createChart("eff", 0)
-        this.createChart("qua", 0)
+        this.createChart("OEE", 0, 40)
+        this.createChart("AVA", 0, 80)
+        this.createChart("EFF", 0, 80)
+        this.createChart("QUA", 0, 80)
         this.createTrend(0, 0, 0, 0)
     }
 
@@ -52,7 +52,7 @@ export default class View {
 
 
     // create charts
-    createChart(name, value) {
+    createChart(name, value, labelPosition) {
         Highcharts.chart(name, {
             chart: {
                 type: 'pie',
@@ -63,15 +63,12 @@ export default class View {
                 }
             },
             title: {
-                text: 'Browser market shares at a specific website, 2014'
-            },
-            accessibility: {
-                point: {
-                    valueSuffix: '%'
+                text: `${name}\u00A0${value}%`,
+                y: labelPosition,
+                style: {
+                    color: '#80ff80',
+                    font: 'bold 25px "Trebuchet MS", Verdana, sans-serif'
                 }
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
             plotOptions: {
                 pie: {
@@ -84,8 +81,7 @@ export default class View {
                     depth: 60,
                     innerSize: '50%',
                     dataLabels: {
-                        enabled: true,
-                        format: '{point.name}'
+                        enabled: false,
                     }
                 }
             },
@@ -93,12 +89,11 @@ export default class View {
                 type: 'pie',
                 name: 'KPI',
                 data: [{
-                    name: name,
                     y: value,
-                    selected: true
                 },
-                    ["??", (100 - value)]
-                ]
+                    ["", (100 - value)]
+                ],
+                enableMouseTracking: false,
             }],
         });
     }
@@ -107,12 +102,12 @@ export default class View {
     //update charts
     updateChart(name, num, val) {
         Highcharts.charts[num].series[0].setData([{
-            name: name,
             y: val,
-            selected: true
         },
-            ["??", (100 - val)]
+            ["", (100 - val)]
         ])
+
+        Highcharts.charts[num].setTitle({ text: `${name}\u00A0${val}%`})
     }
 
 
@@ -124,8 +119,12 @@ export default class View {
                 enableMouseWheelZoom: true
             },
             yAxis: {
+                max: 100,
                 title: {
-                    text: 'Value in percent [%]'
+                    text: 'Value in percent [%]',
+                    style: {
+                        font: 'bold 14px "Trebuchet MS", Verdana, sans-serif'
+                    }
                 }
             },
             xAxis: {
@@ -144,51 +143,68 @@ export default class View {
                 year: '%Y'
                 },
                 title: {
-                    text: 'Date'
+                    text: 'Date',
+                    style: {
+                        font: 'bold 14px "Trebuchet MS", Verdana, sans-serif'
+                    }
                 },
             },
             legend: {
                 layout: 'vertical',
                 align: 'right',
-                verticalAlign: 'middle'
+                verticalAlign: 'middle',
+                itemStyle: {
+                    color: '#808080',
+                    fontWeight: 'bold',
+                    fontSize: '14px'
+                },
+                symbolRadius: 0
             },
             plotOptions: {
                 series: {
-                    label: {
-                        connectorAllowed: false
-                    },
                     pointStart: 0,
                     pointInterval: 5
                 }
             },
             series: [{
+                type: 'column',
                 name: 'OEE',
                 data: [oeeC],
-                color: "#80ff80"
+                color: "#80ff80",
+                marker: {
+                    symbol: 'none'
+                }
             }, {
                 name: 'AVA',
                 data: [avaC],
-                color: "#ffff33"
+                color: "#ffff33",
+                marker: {
+                    symbol: 'circle'
+                }
             }, {
                 name: 'EFF',
                 data: [effC],
-                color: "#ff9933"
+                color: "#ff9933",
+                marker: {
+                    symbol: 'circle'
+                }
             }, {
                 name: 'QUA',
                 data: [quaC],
-                color: "#ff0000"
+                color: "#ff0000",
+                marker: {
+                    symbol: 'circle'
+                }
 
             }],
             responsive: {
                 rules: [{
                     condition: {
-                        maxWidth: 500
+                        maxWidth: 480
                     },
                     chartOptions: {
                         legend: {
-                            layout: 'horizontal',
-                            align: 'center',
-                            verticalAlign: 'bottom'
+                            enabled: false
                         }
                     }
                 }]
@@ -218,7 +234,9 @@ export default class View {
 
     }
 
-
 }
 
+window.onresize = function() {
+    location.reload()
+}
 

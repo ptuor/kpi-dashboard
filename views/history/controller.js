@@ -13,8 +13,6 @@ export default class Controller {
 
     }
 
-
-
     validateDateAndTime(fromDate, toDate){
         if (    (fromDate === undefined)
             ||  !(fromDate instanceof Date)){
@@ -67,10 +65,10 @@ export default class Controller {
 
 
     updateView(averageOeeValues, oeeArray){
-        this.view.updateChart("oee", 0, averageOeeValues.oee)
-        this.view.updateChart("ava", 1, averageOeeValues.ava)
-        this.view.updateChart("eff", 2, averageOeeValues.eff)
-        this.view.updateChart("qua", 3, averageOeeValues.qua)
+        this.view.updateChart("OEE", 0, averageOeeValues.oee)
+        this.view.updateChart("AVA", 1, averageOeeValues.ava)
+        this.view.updateChart("EFF", 2, averageOeeValues.eff)
+        this.view.updateChart("QUA", 3, averageOeeValues.qua)
        this.view.updateTrend(
            (oeeArray.map(values => [Date.parse(values.createdAt), values.oee])),
            (oeeArray.map(values => [Date.parse(values.createdAt), values.ava])),
