@@ -75,3 +75,23 @@ footer {
     width: 100%;
     display: flex;
 }*/
+
+
+@media (max-width: 1200px) {
+    #config {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3);
+    }
+   
+}
+
+@media (max-width: 992px) {
+
+}
+
+@media (max-width: 776px) {
+}
+
+@media (max-width: 480px) {
+   
+}
