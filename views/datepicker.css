@@ -1,6 +1,13 @@
 .datepickerGroup {
     position: relative;
-    margin: 30px 20px 50px;
+    margin: 30px 20px 30px;
+}
+
+.datepickerContainer{
+    padding: 10px 10px 5px 5px;
+    display: block;
+    width: 315px;
+    display: block;
 }
 
 input {
@@ -8,7 +15,7 @@ input {
     font-size: 1.2em;
     padding: 10px 10px 5px 5px;
     display: block;
-    width: 300px;
+    width: 315px;
     border: none;
     border-bottom: 1px solid #607D8B;
 }
@@ -17,7 +24,10 @@ input:focus {
 }
 
 label.input-label {
+    font-size: 1.9em;
     color: rgba(128, 128, 128, 0.75);
+    float: left;
+    margin-right: 15px;
 }
 
 input:focus ~ label.input-label {
@@ -30,6 +40,7 @@ input[readonly] ~ label.input-label {
 }
 
 .bar {
+    clear:both;
     position: relative;
     display: block;
     width: 315px;
