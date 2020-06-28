@@ -20,6 +20,7 @@ footer {
 #teaser {
     display: flex;
     grid-area: teaser;
+    position: relative;
     align-items: center;
     justify-content: center;
 }
@@ -27,6 +28,7 @@ footer {
 #kpi {
     display: flex;
     grid-area: kpi;
+    justify-content: space-evenly;
 }
 
 #trend {
@@ -48,8 +50,16 @@ footer {
     flex: 1;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
-.highcharts-credits, .highcharts-background, .highcharts-title {
+.highcharts-credits, .highcharts-background {
     display: none;
+}
+
+.highcharts-title {
+    display: flex;
+    color: #80ff80;
+    align-items: center;
+    justify-content: center;
 }

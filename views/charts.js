@@ -25,16 +25,16 @@ poll(() => new Promise(() => {
         quaArray.push(result.qua)
 
         if (count === 0) {
-            createChart("oee", result.oee)
-            createChart("ava", result.ava)
-            createChart("eff", result.eff)
-            createChart("qua", result.qua)
+            createChart("OEE", result.oee)
+            createChart("AVA", result.ava)
+            createChart("EFF", result.eff)
+            createChart("QUA", result.qua)
             createTrend(result.oee, result.ava, result.eff, result.qua)
         } else {
-            updateChart("oee", 0, result.oee)
-            updateChart("ava", 1, result.ava)
-            updateChart("eff", 2, result.eff)
-            updateChart("qua", 3, result.qua)
+            updateChart( "OEE",0, result.oee)
+            updateChart( "AVA",1, result.ava)
+            updateChart( "EFF", 2, result.eff)
+            updateChart( "QUA", 3,  result.qua)
             updateTrend(oeeArray, avaArray, effArray, quaArray)
         }
         count++
@@ -43,6 +43,8 @@ poll(() => new Promise(() => {
 
 // create charts
 function createChart(name, value) {
+    const fillerValue = 100 - value
+
     Highcharts.chart(name, {
         chart: {
             type: 'pie',
@@ -53,15 +55,12 @@ function createChart(name, value) {
             }
         },
         title: {
-            text: 'Browser market shares at a specific website, 2014'
-        },
-        accessibility: {
-            point: {
-                valueSuffix: '%'
+            text: `${name}\u00A0${value}%`,
+            y: 40,
+            style: {
+                color: '#80ff80',
+                font: 'bold 25px "Trebuchet MS", Verdana, sans-serif'
             }
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
         plotOptions: {
             pie: {
@@ -69,26 +68,20 @@ function createChart(name, value) {
                     '#80ff80',
                     '#808080'
                 ],
-                allowPointSelect: true,
-                cursor: 'pointer',
                 depth: 60,
                 innerSize: '50%',
                 dataLabels: {
-                    enabled: true,
-                    format: '{point.name}'
+                    enabled: false,
                 }
             }
         },
         series: [{
-            type: 'pie',
-            name: 'KPI',
             data: [{
-                name: name,
-                y: value,
-                selected: true
+                y: value
             },
-                ["??", (100 - value)]
-            ]
+                ["", (fillerValue)]
+            ],
+            enableMouseTracking: false,
         }],
     });
 }
@@ -165,12 +158,12 @@ function createTrend(oeeC, avaC, effC, quaC) {
 //update charts
 function updateChart(name, num, val) {
     Highcharts.charts[num].series[0].setData([{
-        name: name,
         y: val,
-        selected: true
     },
-        ["??", (100 - val)]
+        ["", (100 - val)]
     ])
+
+    Highcharts.charts[num].setTitle({ text: `${name}\u00A0${val}%`})
 }
 
 //update trend
@@ -198,7 +191,7 @@ function thresholdMessage(oee) {
             title: 'Warning',
             type: 'warning',
             text: 'The OEE value is very low',
-            timeout: 4000
+            timeout: 2000
         });
     }
 }
