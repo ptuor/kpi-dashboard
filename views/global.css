@@ -18,11 +18,8 @@ footer {
 }
 
 #teaser {
-    display: flex;
-    position: relative;
+    display: grid;
     grid-area: teaser;
-    align-items: center;
-    justify-content: center;
     padding: 0.5rem;
 }
 
@@ -30,7 +27,7 @@ footer {
     display: flex;
     grid-area: kpi;
     justify-content: space-evenly;
-    padding: 0.5rem 5rem 0.5rem 0.5rem;
+    padding: 0.5rem;
 }
 
 #trend {
@@ -47,10 +44,12 @@ footer {
     grid-template-columns: repeat(3, auto);
     grid-template-rows: 1fr;
     gap: 2px 2px;
+    width: 100%;
 }
 
 #kpi > div, #config > div {
     flex: 1;
+    width: 100%;
 }
 
 .highcharts-title {
@@ -68,30 +67,14 @@ footer {
     padding: 2rem;
 }
 
-/*.highcharts-container {
-    width: 100%;
-}
-.highcharts-container svg {
-    width: 100%;
-    display: flex;
-}*/
-
-
 @media (max-width: 1200px) {
-    #config {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(3);
-    }
-   
 }
 
 @media (max-width: 992px) {
-
 }
 
 @media (max-width: 776px) {
 }
 
 @media (max-width: 480px) {
-   
 }

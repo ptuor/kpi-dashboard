@@ -27,10 +27,10 @@ export default class View {
         this.addRefreshEventListener(refreshDates)
 
 
-        this.createChart("OEE", 0, 40)
-        this.createChart("AVA", 0, 80)
-        this.createChart("EFF", 0, 80)
-        this.createChart("QUA", 0, 80)
+        this.createChart("OEE", 0)
+        this.createChart("AVA", 0)
+        this.createChart("EFF", 0)
+        this.createChart("QUA", 0)
         this.createTrend(0, 0, 0, 0)
     }
 
@@ -52,7 +52,7 @@ export default class View {
 
 
     // create charts
-    createChart(name, value, labelPosition) {
+    createChart(name, value) {
         Highcharts.chart(name, {
             chart: {
                 type: 'pie',
@@ -64,7 +64,7 @@ export default class View {
             },
             title: {
                 text: `${name}\u00A0${value}%`,
-                y: labelPosition,
+                y: 40,
                 style: {
                     color: '#80ff80',
                     font: 'bold 25px "Trebuchet MS", Verdana, sans-serif'

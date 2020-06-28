@@ -25,10 +25,10 @@ poll(() => new Promise(() => {
         quaArray.push(result.qua)
 
         if (count === 0) {
-            createChart("OEE", result.oee, 40)
-            createChart("AVA", result.ava, 80)
-            createChart("EFF", result.eff, 80)
-            createChart("QUA", result.qua, 80)
+            createChart("OEE", result.oee)
+            createChart("AVA", result.ava)
+            createChart("EFF", result.eff)
+            createChart("QUA", result.qua)
             createTrend(result.oee, result.ava, result.eff, result.qua)
         } else {
             updateChart( "OEE",0, result.oee)
@@ -42,7 +42,7 @@ poll(() => new Promise(() => {
 }), 5000);
 
 // create charts
-function createChart(name, value, labelPosition) {
+function createChart(name, value) {
     const fillerValue = 100 - value
 
     Highcharts.chart(name, {
@@ -56,7 +56,7 @@ function createChart(name, value, labelPosition) {
         },
         title: {
             text: `${name}\u00A0${value}%`,
-            y: labelPosition,
+            y: 40,
             style: {
                 color: '#80ff80',
                 font: 'bold 25px "Trebuchet MS", Verdana, sans-serif'

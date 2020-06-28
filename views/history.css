@@ -22,8 +22,6 @@ body {
                 "trend trend"
                 "footer footer";
         grid-template-rows: 3rem 0.5fr 1fr 1fr 3rem;
-        height: auto;
-        overflow: auto;
     }
 }
 
@@ -38,12 +36,20 @@ body {
                 "footer";
         grid-template-rows: 3rem 0.5fr 1fr 1fr 1fr 3rem;
         grid-template-columns: 1fr;
+        height: auto;
+        overflow: auto;
     }
-    #kpi {
-        padding: 0.5rem;
+    #config {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
     }
 }
 
 @media (max-width: 480px) {
-    /*display none oder charts untereinander?*/
+    #kpi .highcharts-series {
+        display: none;
+    }
+    #kpi {
+        flex-direction: column;
+    }
 }
