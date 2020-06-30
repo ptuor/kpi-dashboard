@@ -121,7 +121,7 @@ export default class View {
             yAxis: {
                 max: 100,
                 title: {
-                    text: 'Value in percent [%]',
+                    text: 'Value in percent',
                     style: {
                         font: 'bold 14px "Trebuchet MS", Verdana, sans-serif'
                     }
@@ -143,7 +143,7 @@ export default class View {
                 year: '%Y'
                 },
                 title: {
-                    text: 'Date',
+                    text: 'Date and Time',
                     style: {
                         font: 'bold 14px "Trebuchet MS", Verdana, sans-serif'
                     }
@@ -236,7 +236,4 @@ export default class View {
 
 }
 
-window.onresize = function() {
-    location.reload()
-}
 

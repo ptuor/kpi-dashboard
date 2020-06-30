@@ -14,15 +14,6 @@ body {
 }
 
 @media (max-width: 992px) {
-    body {
-        grid-template-areas:
-                "header header"
-                "config config"
-                "teaser kpi"
-                "trend trend"
-                "footer footer";
-        grid-template-rows: 3rem 0.5fr 1fr 1fr 3rem;
-    }
 }
 
 @media (max-width: 776px) {
@@ -43,13 +34,20 @@ body {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(3, auto);
     }
+    .datepickerGroup .fromDate{
+        margin-bottom: 0rem;
+    }
 }
 
 @media (max-width: 480px) {
+    #kpi {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
+    }
     #kpi .highcharts-series {
         display: none;
     }
-    #kpi {
-        flex-direction: column;
+    #kpi .highcharts-container {
+        height: 5rem !important;
     }
 }

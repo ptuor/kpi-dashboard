@@ -24,9 +24,10 @@ footer {
 }
 
 #kpi {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
     grid-area: kpi;
-    justify-content: space-evenly;
     padding: 0.5rem;
 }
 
@@ -47,7 +48,7 @@ footer {
     width: 100%;
 }
 
-#kpi > div, #config > div {
+#config > div {
     flex: 1;
     width: 100%;
 }
@@ -67,14 +68,3 @@ footer {
     padding: 2rem;
 }
 
-@media (max-width: 1200px) {
-}
-
-@media (max-width: 992px) {
-}
-
-@media (max-width: 776px) {
-}
-
-@media (max-width: 480px) {
-}

@@ -95,7 +95,7 @@ function createTrend(oeeC, avaC, effC, quaC) {
         yAxis: {
             max: 100,
             title: {
-                text: 'Value in percent [%]',
+                text: 'Value in percent',
                 style: {
                     font: 'bold 14px "Trebuchet MS", Verdana, sans-serif'
                 }
@@ -117,7 +117,7 @@ function createTrend(oeeC, avaC, effC, quaC) {
                 year: '%Y'
             },
             title: {
-                text: 'Date',
+                text: 'Date and Time',
                 style: {
                     font: 'bold 14px "Trebuchet MS", Verdana, sans-serif'
                 }
@@ -226,6 +226,3 @@ function thresholdMessage(oee) {
     }
 }
 
-window.onresize = function() {
-    location.reload()
-}
