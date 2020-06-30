@@ -15,45 +15,46 @@ mongodb.MongoClient.connect(uri, {useUnifiedTopology: true},(err, client) => {
 
 
 const getData = async (query, callback) =>{
-    mongodb.MongoClient.connect(uri, {useUnifiedTopology: true},(err, client) => {
-
-        //log error if any connection error occurred
-        if (err) return console.log(err)
-        const db = client.db("kpiData");
-        db.collection("kpiValues").find(query).toArray().then(results => {
+    try {
+        collection.find(query).toArray().then(results => {
             let lastValue = results.slice(-1)[0]
-            if (lastValue.oee < 95){
-                lastValue.oee = lastValue.oee + 1
-            }else{
-                lastValue.oee = 0
+
+            let newValue = {
+                ava:12,
+                eff:16,
+                qua:25,
+                createdAt: new Date()
             }
 
             if (lastValue.ava < 95){
-                lastValue.ava = lastValue.ava + 3
+                newValue.ava = lastValue.ava + 3
             }else{
-                lastValue.ava = 0
+                newValue.ava = 0
             }
 
             if (lastValue.eff < 95){
-                lastValue.eff = lastValue.eff + 5
+                newValue.eff = lastValue.eff + 5
             }else{
-                lastValue.eff = 0
+                newValue.eff = 0
             }
 
             if (lastValue.qua < 95){
-                lastValue.qua = lastValue.qua + 7
+                newValue.qua = lastValue.qua + 7
             }else{
-                lastValue.qua = 0
+                newValue.qua = 0
             }
 
-            lastValue._id = lastValue._id + 1
-            lastValue.createdAt = new Date()
+            newValue.oee = ((newValue.ava * newValue.eff * newValue.qua) / 10000)
 
-            db.collection("kpiValues").insertOne(lastValue)
+            collection.insertOne(newValue)
             callback(results)
         } )
 
-    })
+
+    }catch (err) {
+        console.log(err)
+    }
+
 
 }
 
@@ -61,16 +62,15 @@ const getData = async (query, callback) =>{
 
 
 const getDataByQuery = async (query, callback) =>{
-    mongodb.MongoClient.connect(uri, {useUnifiedTopology: true},(err, client) => {
-
-        //log error if any connection error occurred
-        if (err) return console.log(err)
-        const db = client.db("kpiData");
-        db.collection("kpiValues").find(query).toArray().then(results => {
+    try {
+        collection.find(query).toArray().then(results => {
             callback(results)
         } )
+    }catch (err) {
+        console.log(err)
+    }
 
-    })
+
 
 }
 
