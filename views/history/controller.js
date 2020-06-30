@@ -1,4 +1,3 @@
-//import {Data as LocalData}  from './data.remote.js'
 export default class Controller {
 
     constructor(view, data) {
