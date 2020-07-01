@@ -16,6 +16,7 @@ export default class Controller {
         poll(() => new Promise(() => {
             this.data.getActualValues((result)=>{
                 this.oeeArray.push(result)
+                this.thresholdMessage(result.oee)
                 this.updateView(result, this.oeeArray)
             })
 
@@ -32,6 +33,12 @@ export default class Controller {
             (oeeArray.map(values => [Date.parse(values.createdAt), values.ava])),
             (oeeArray.map(values => [Date.parse(values.createdAt), values.eff])),
             (oeeArray.map(values => [Date.parse(values.createdAt), values.qua])))
+    }
+
+    thresholdMessage(oee) {
+        if (oee < 30) {
+            this.view.thresholdMessage(oee)
+        }
     }
 
 }
