@@ -24,7 +24,7 @@ export default class Controller {
     }
 
     updateView(actualOeeValues, oeeArray){
-        this.view.updateChart("OEE", 0, actualOeeValues.oee)
+        this.view.updateChart("OEE", 0, (Math.round(100 * actualOeeValues.oee) / 100))
         this.view.updateChart("AVA", 1, actualOeeValues.ava)
         this.view.updateChart("EFF", 2, actualOeeValues.eff)
         this.view.updateChart("QUA", 3, actualOeeValues.qua)

@@ -118,6 +118,15 @@ describe('Controller', function() {
             assert.strictEqual(averageValueFromArray, 10.25)
         })
 
+        it('should return 3.33 as correct rounded average of array', function() {
+            const ctrl = new Controller(this.view , undefined)
+            const array = [5, 4, 1]
+
+            const averageValueFromArray = ctrl.calculateAverageOeeValues(array)
+
+            assert.strictEqual(averageValueFromArray, 3.33)
+        })
+
     })
 
 })

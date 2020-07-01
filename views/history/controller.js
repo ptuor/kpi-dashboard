@@ -82,7 +82,7 @@ export default class Controller {
     calculateAverageOeeValues(values = []){
         if (values.length > 0 ){
             const summ = values.reduce((summ, currentValue)=> summ + currentValue)
-            return ( summ / values.length )
+            return (Math.round(100 * (summ / values.length))/100)
         } else{
             return 0
         }
