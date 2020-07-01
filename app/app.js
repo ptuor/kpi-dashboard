@@ -1,8 +1,10 @@
 // init project
 const express = require('express');
+const favicon = require('serve-favicon')
 const app = express();
 const path = require('path');
 app.use(express.static('./'));
+app.use(favicon(path.join(__dirname, '../views', 'favicon.ico')))
 /* app.use(require("cors")()) // allow Cross-domain requests
 app.use(require('body-parser').json()) // When someone sends something to the server, we can recieve it in JSON format */
 
