@@ -2,47 +2,52 @@ body {
     display: grid;
     grid-template-areas:
             "header header"
-            "config1 config1"
+            "config config"
             "teaser kpi"
-            "config2 trend"
+            "trend trend"
             "footer footer";
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 3rem  0.2fr 1fr 1fr 3rem;
+    grid-template-rows: 3rem 0.2fr 1fr 1fr 3rem;
 }
 
 @media (max-width: 1200px) {
 }
 
 @media (max-width: 992px) {
-    body {
-        grid-template-areas:
-                "header header"
-                "config1 config1"
-                "teaser kpi"
-                "trend trend"
-                "config2 config2"
-                "footer footer";
-        grid-template-rows: 3rem 0.5fr 1fr 1fr 0.5fr 3rem;
-        height: auto;
-        overflow: auto;
-    }
 }
 
 @media (max-width: 776px) {
     body {
         grid-template-areas:
                 "header"
-                "config1"
+                "config"
                 "teaser"
                 "kpi"
                 "trend"
-                "config2"
                 "footer";
-        grid-template-rows: 3rem 0.5fr 1fr 1fr 1fr 0.5fr 3rem;
+        grid-template-rows: 3rem 0.5fr 1fr 1fr 1fr 3rem;
         grid-template-columns: 1fr;
+        height: auto;
+        overflow: auto;
+    }
+    #config {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
+    }
+    .datepickerGroup .fromDate{
+        margin-bottom: 0rem;
     }
 }
 
 @media (max-width: 480px) {
-    /*display none oder charts untereinander?*/
+    #kpi {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
+    }
+    #kpi .highcharts-series {
+        display: none;
+    }
+    #kpi .highcharts-container {
+        height: 5rem !important;
+    }
 }

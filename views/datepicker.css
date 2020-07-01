@@ -1,24 +1,34 @@
 .datepickerGroup {
+    display: flex;
+    flex-direction: column-reverse;
     position: relative;
-    margin: 30px 20px 50px;
+    max-height: 75px;
 }
 
 input {
     color: #424242;
     font-size: 1.2em;
-    padding: 10px 10px 5px 5px;
+    margin: 0rem 1rem 1rem 1rem;
     display: block;
-    width: 300px;
-    border: none;
-    border-bottom: 1px solid #607D8B;
+    border: 2px solid #607D8B;
+    transition: all 0.3s ease;
 }
+
 input:focus {
-    outline: none;
+    border: 2px solid #80ff80;;
+    border-radius: 4px;
+}
+
+.refreshDate:focus{
+    border: 2px solid #607D8B;
+    border-radius: 0px;
 }
 
 label.input-label {
-    color: #616161;
-    position: absolute;
+    color: rgba(128, 128, 128, 0.75);
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
 }
 
 input:focus ~ label.input-label {
@@ -26,11 +36,11 @@ input:focus ~ label.input-label {
 }
 
 input[readonly] ~ label.input-label {
-    top: -15px;
-    font-size: 0.9em;
+    font-size: 1.5rem;
 }
 
 .bar {
+    clear:both;
     position: relative;
     display: block;
     width: 315px;

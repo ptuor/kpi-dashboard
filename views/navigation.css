@@ -2,7 +2,6 @@
 /****************************/
 /* general navigation */
 header nav{
-    position: fixed;
     top: 0px;
     width: 100%;
     z-index: 99;
@@ -22,6 +21,7 @@ nav li a {
 nav li a:hover {
     background-color: #111;
 }
+
 
 
 /****************************/
@@ -52,6 +52,12 @@ nav li a.activeNavi {
 /* generally hide the navigation */
 .Navi{
     visibility: hidden;
+}
+
+
+.Navi li svg{
+    width: 24px;
+    height: 24px;
 }
 
 /****************************/
@@ -100,8 +106,6 @@ input#hamburg {display:none}
     transform: translateY(-8px) rotate(45deg);
 }
 
-
-
 .NaviBox{
     float: right;
     position: fixed;
@@ -114,18 +118,9 @@ input#hamburg {display:none}
     height: 200px ;
     transition: 0.5s;
 }
-
-
 #menuToggle input:checked ~ .NaviBox
 {
     right: 0px;
-}
-
-
-
-
-
-@media only screen and (min-width:480px){
 }
 
 @media only screen and (min-width:640px){
@@ -133,23 +128,8 @@ input#hamburg {display:none}
     .Navi{
         visibility: visible;
     }
-
-
     .row{
         visibility: hidden;
         transition: 0.0s;
     }
-
-}
-
-@media only screen and (min-width:728px){
-}
-
-@media only screen and (min-width:921px){
-}
-
-@media only screen and (min-width:1200px){
-}
-
-@media only screen and (min-width:1920px){
 }

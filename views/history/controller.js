@@ -1,4 +1,3 @@
-//import {Data as LocalData}  from './data.remote.js'
 export default class Controller {
 
     constructor(view, data) {
@@ -13,8 +12,6 @@ export default class Controller {
 
     }
 
-
-
     validateDateAndTime(fromDate, toDate){
         if (    (fromDate === undefined)
             ||  !(fromDate instanceof Date)){
@@ -28,8 +25,11 @@ export default class Controller {
         const isValidDateTime = this.validateDateAndTime(fromDate,toDate)
         if (isValidDateTime){
 
+
+            fromDate.setHours(fromDate.getHours() + 2)
+            toDate.setHours(toDate.getHours() + 2)
+
             const allOeeValues = await this.data.getValuesByDates(fromDate.toISOString(),toDate.toISOString())
-            console.log(allOeeValues)
             // check if any values have been returned
             if (allOeeValues.length === 0){
                 return {
@@ -66,20 +66,23 @@ export default class Controller {
 
     }
 
-
     updateView(averageOeeValues, oeeArray){
-        this.view.updateChart("oee", 0, averageOeeValues.oee)
-        this.view.updateChart("ava", 1, averageOeeValues.ava)
-        this.view.updateChart("eff", 2, averageOeeValues.eff)
-        this.view.updateChart("qua", 3, averageOeeValues.qua)
-        this.view.updateTrend((oeeArray.map(values => values.oee)), (oeeArray.map(values => values.ava)), (oeeArray.map(values => values.eff)), (oeeArray.map(values => values.qua)))
+        this.view.updateChart("OEE", 0, averageOeeValues.oee)
+        this.view.updateChart("AVA", 1, averageOeeValues.ava)
+        this.view.updateChart("EFF", 2, averageOeeValues.eff)
+        this.view.updateChart("QUA", 3, averageOeeValues.qua)
+       this.view.updateTrend(
+           (oeeArray.map(values => [Date.parse(values.createdAt), values.oee])),
+           (oeeArray.map(values => [Date.parse(values.createdAt), values.ava])),
+           (oeeArray.map(values => [Date.parse(values.createdAt), values.eff])),
+           (oeeArray.map(values => [Date.parse(values.createdAt), values.qua])))
     }
 
 
     calculateAverageOeeValues(values = []){
         if (values.length > 0 ){
             const summ = values.reduce((summ, currentValue)=> summ + currentValue)
-            return ( summ / values.length )
+            return (Math.round(100 * (summ / values.length))/100)
         } else{
             return 0
         }

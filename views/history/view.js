@@ -1,5 +1,7 @@
 export default class View {
-    constructor(datePickerRootSelector){
+    constructor(datePickerRootSelector, charts){
+
+        this.charts = charts
 
         let datePickerFrom = flatpickr(datePickerRootSelector + " .fromDate", {
             enableTime: true,
@@ -27,11 +29,11 @@ export default class View {
         this.addRefreshEventListener(refreshDates)
 
 
-        this.createChart("oee", 0)
-        this.createChart("ava", 0)
-        this.createChart("eff", 0)
-        this.createChart("qua", 0)
-        this.createTrend(0, 0, 0, 0)
+        this.charts.createChart("OEE", 0)
+        this.charts.createChart("AVA", 0)
+        this.charts.createChart("EFF", 0)
+        this.charts.createChart("QUA", 0)
+        this.charts.createTrend(0, 0, 0, 0)
     }
 
 
@@ -49,162 +51,21 @@ export default class View {
         this.onRefreshHandler = onRefreshHandler
     }
 
-
-
-    // create charts
     createChart(name, value) {
-        Highcharts.chart(name, {
-            chart: {
-                type: 'pie',
-                options3d: {
-                    enabled: true,
-                    alpha: 30,
-                    beta: 0
-                }
-            },
-            title: {
-                text: 'Browser market shares at a specific website, 2014'
-            },
-            accessibility: {
-                point: {
-                    valueSuffix: '%'
-                }
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    colors: [
-                        '#80ff80',
-                        '#808080'
-                    ],
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    depth: 60,
-                    innerSize: '50%',
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.name}'
-                    }
-                }
-            },
-            series: [{
-                type: 'pie',
-                name: 'KPI',
-                data: [{
-                    name: name,
-                    y: value,
-                    selected: true
-                },
-                    ["??", (100 - value)]
-                ]
-            }],
-        });
+        this.charts.createChart(name,value)
     }
 
-
-    //update charts
     updateChart(name, num, val) {
-        Highcharts.charts[num].series[0].setData([{
-            name: name,
-            y: val,
-            selected: true
-        },
-            ["??", (100 - val)]
-        ])
+        this.charts.updateChart(name, num, val)
     }
 
-
-
-    // create Trend
     createTrend(oeeC, avaC, effC, quaC) {
-        Highcharts.chart('trend', {
-
-            yAxis: {
-                title: {
-                    text: 'Value in percent [%]'
-                }
-            },
-            xAxis: {
-                title: {
-                    text: 'Time in seconds [s]'
-                },
-                accessibility: {
-                    rangeDescription: 'Range: 5 to 10'
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle'
-            },
-            plotOptions: {
-                series: {
-                    label: {
-                        connectorAllowed: false
-                    },
-                    pointStart: 0,
-                    pointInterval: 5
-                }
-            },
-            series: [{
-                name: 'OEE',
-                data: [oeeC],
-                color: "#80ff80"
-            }, {
-                name: 'AVA',
-                data: [avaC],
-                color: "#ffff33"
-            }, {
-                name: 'EFF',
-                data: [effC],
-                color: "#ff9933"
-            }, {
-                name: 'QUA',
-                data: [quaC],
-                color: "#ff0000"
-
-            }],
-            responsive: {
-                rules: [{
-                    condition: {
-                        maxWidth: 500
-                    },
-                    chartOptions: {
-                        legend: {
-                            layout: 'horizontal',
-                            align: 'center',
-                            verticalAlign: 'bottom'
-                        }
-                    }
-                }]
-            }
-        });
+        this.charts.createTrend(oeeC, avaC, effC, quaC)
     }
 
-
-
-    //update trend
     updateTrend(oeeT, avaT, effT, quaT) {
-        let values
-        for (let i = 0; i <= 3; i++) {
-            if (i === 0) {
-                values = oeeT
-            } else if (i === 1) {
-                values = avaT
-            } else if (i === 2) {
-                values = effT
-            } else if (i === 3) {
-                values = quaT
-            }
-            Highcharts.charts[4].series[i].setData(
-                values
-            )
-        }
-
+        this.charts.updateTrend(oeeT, avaT, effT, quaT)
     }
-
 
 }
 

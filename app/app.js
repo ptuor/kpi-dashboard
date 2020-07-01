@@ -1,20 +1,12 @@
 // init project
 const express = require('express');
+const favicon = require('serve-favicon')
 const app = express();
-app.use(express.static('./'));
-/* app.use(require("cors")()) // allow Cross-domain requests
-app.use(require('body-parser').json()) // When someone sends something to the server, we can recieve it in JSON format */
-
-//handlebars
-const hbs = require('express-handlebars');
 const path = require('path');
-app.engine("handlebars", hbs({
-    defaultLayout: "index",
-    layoutsDir: path.join(__dirname, "../views")
-}))
-app.set("view engine", "handlebars");
+app.use(express.static('./'));
 
-
+// return favicon for each page
+app.use(favicon(path.join(__dirname, '../views', 'favicon.ico')))
 
 /*******************************************************/
 // routes
@@ -22,11 +14,10 @@ app.set("view engine", "handlebars");
 
 //Responds to GET requests to the root route ('/')
 app.get("/", (req, res) => {
-    res.render("index");
+    res.sendFile(path.join(__dirname, "../views/current", "index.html"));
 });
 
-
-// route all requests to router
+// route all other requests to router
 const router = require('./router/router.js')
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
@@ -34,9 +25,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use('/', router)
-
-
-
 
 // listen for requests on port 3000
 const port = 3000;
