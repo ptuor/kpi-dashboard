@@ -25,6 +25,10 @@ export default class Controller {
         const isValidDateTime = this.validateDateAndTime(fromDate,toDate)
         if (isValidDateTime){
 
+
+            fromDate.setHours(fromDate.getHours() + 2)
+            toDate.setHours(toDate.getHours() + 2)
+
             const allOeeValues = await this.data.getValuesByDates(fromDate.toISOString(),toDate.toISOString())
             // check if any values have been returned
             if (allOeeValues.length === 0){
@@ -61,7 +65,6 @@ export default class Controller {
         }
 
     }
-
 
     updateView(averageOeeValues, oeeArray){
         this.view.updateChart("OEE", 0, averageOeeValues.oee)

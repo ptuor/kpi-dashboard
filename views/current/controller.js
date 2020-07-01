@@ -3,19 +3,24 @@ export default class Controller {
     constructor(view, data) {
         this.view = view
         this.data = data
-
-
-        this.view.createChart("OEE", 0)
-        this.view.createChart("AVA", 0)
-        this.view.createChart("EFF", 0)
-        this.view.createChart("QUA", 0)
-        this.view.createTrend(0, 0, 0, 0)
+        this.oeeArray = []
     }
 
 
+    run(){
+        // Polling request to server
+        const sleep = time => new Promise(resolve => setTimeout(resolve, time))
+        const poll = (promiseFn, time) => promiseFn().then(
+            sleep(time).then(() => poll(promiseFn, time)))
 
+        poll(() => new Promise(() => {
+            this.data.getActualValues((result)=>{
+                this.oeeArray.push(result)
+                this.updateView(result, this.oeeArray)
+            })
 
-
+        }), 5000);
+    }
 
     updateView(actualOeeValues, oeeArray){
         this.view.updateChart("OEE", 0, actualOeeValues.oee)
@@ -28,6 +33,5 @@ export default class Controller {
             (oeeArray.map(values => [Date.parse(values.createdAt), values.eff])),
             (oeeArray.map(values => [Date.parse(values.createdAt), values.qua])))
     }
-
 
 }

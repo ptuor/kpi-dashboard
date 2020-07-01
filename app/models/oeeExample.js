@@ -19,11 +19,14 @@ const getData = async (query, callback) =>{
         collection.find(query).toArray().then(results => {
             let lastValue = results.slice(-1)[0]
 
+            const date = new Date()
+            date.setHours(date.getHours() + 2)
+
             let newValue = {
                 ava:12,
                 eff:16,
                 qua:25,
-                createdAt: new Date()
+                createdAt: date
             }
 
             if (lastValue.ava < 95){

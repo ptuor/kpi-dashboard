@@ -3,7 +3,7 @@ export default class Data {
         this.serverUrl = serverUrl
     }
 
-    async getActualValues(){
+    async getActualValues(callback){
         let url = new URL(this.serverUrl + "/oee/live")
 
         return fetch(url.toString(), {
@@ -16,6 +16,8 @@ export default class Data {
             }else{
                 return Promise.reject(response)
             }
+        }).then(result => {
+          callback(result)
         })
     }
 }
