@@ -24,10 +24,10 @@ export default class Controller {
     }
 
     updateView(actualOeeValues, oeeArray){
-        this.view.updateChart("OEE", 0, (Math.round(100 * actualOeeValues.oee) / 100))
-        this.view.updateChart("AVA", 1, actualOeeValues.ava)
-        this.view.updateChart("EFF", 2, actualOeeValues.eff)
-        this.view.updateChart("QUA", 3, actualOeeValues.qua)
+        this.view.updateChart("OEE", 0, (Math.round(10 * actualOeeValues.oee) / 10))
+        this.view.updateChart("AVA", 1, (Math.round(10 * actualOeeValues.ava) / 10))
+        this.view.updateChart("EFF", 2, (Math.round(10 * actualOeeValues.eff) / 10))
+        this.view.updateChart("QUA", 3, (Math.round(10 * actualOeeValues.qua) / 10))
         this.view.updateTrend(
             (oeeArray.map(values => [Date.parse(values.createdAt), values.oee])),
             (oeeArray.map(values => [Date.parse(values.createdAt), values.ava])),

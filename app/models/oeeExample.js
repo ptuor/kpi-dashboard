@@ -30,19 +30,19 @@ const getData = async (query, callback) =>{
             }
 
             if (lastValue.ava < 95){
-                newValue.ava = lastValue.ava + 3
+                newValue.ava = lastValue.ava + 2.6
             }else{
                 newValue.ava = 0
             }
 
             if (lastValue.eff < 95){
-                newValue.eff = lastValue.eff + 5
+                newValue.eff = lastValue.eff + 3.4
             }else{
                 newValue.eff = 0
             }
 
             if (lastValue.qua < 95){
-                newValue.qua = lastValue.qua + 7
+                newValue.qua = lastValue.qua + 6.1
             }else{
                 newValue.qua = 0
             }
@@ -50,6 +50,7 @@ const getData = async (query, callback) =>{
             newValue.oee = ((newValue.ava * newValue.eff * newValue.qua) / 10000)
 
             collection.insertOne(newValue)
+            results.push(newValue)
             callback(results)
         } )
 
