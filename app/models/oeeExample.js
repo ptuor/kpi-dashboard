@@ -1,8 +1,14 @@
-//MongoDB
+/****************************/
+/* example Database mongoDB */
+/****************************/
+
+//init
 mongodb = require("mongodb");
 uri = "mongodb+srv://ibw:kpi2semester@dbkpi-rcc66.gcp.mongodb.net";
 let collection
 
+
+//connect to mongoDB
 mongodb.MongoClient.connect(uri, {useUnifiedTopology: true},(err, client) => {
 
     //log error if any connection error occurred
@@ -13,8 +19,9 @@ mongodb.MongoClient.connect(uri, {useUnifiedTopology: true},(err, client) => {
 });
 
 
-
+// get all data from mongo db, insert new entry while getting new data --> this simulate a machine which inserts new values to database
 const getData = async (query, callback) =>{
+
     try {
         collection.find(query).toArray().then(results => {
             let lastValue = results.slice(-1)[0]
@@ -53,19 +60,15 @@ const getData = async (query, callback) =>{
             results.push(newValue)
             callback(results)
         } )
-
-
     }catch (err) {
         console.log(err)
     }
-
-
 }
 
 
-
-
+// get values by query
 const getDataByQuery = async (query, callback) =>{
+
     try {
         collection.find(query).toArray().then(results => {
             callback(results)
@@ -74,11 +77,10 @@ const getDataByQuery = async (query, callback) =>{
         console.log(err)
     }
 
-
-
 }
 
 
+// export methods
 module.exports = {
     getData,
     getDataByQuery

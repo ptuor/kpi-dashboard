@@ -1,7 +1,12 @@
+/****************************/
+/* OEE - controller         */
+/****************************/
+
 //init service
 const service = require('./service.js')
 
 
+// get all OEE values
 const getAllOeeValues = async (req, res, next) => {
 
      if (req.accepts('application/json')){
@@ -17,9 +22,10 @@ const getAllOeeValues = async (req, res, next) => {
      } else {
          res.sendStatus(406)
      }
-
 }
 
+
+// get last OEE value
 const getLatestOeeValue = async (req, res, next) => {
 
     if (req.accepts('application/json')){
@@ -39,6 +45,8 @@ const getLatestOeeValue = async (req, res, next) => {
 
 }
 
+
+// get OEE values by date query
 const getValuesByDate = async (req, res, next) => {
 
     if (req.accepts('application/json')){
@@ -57,6 +65,7 @@ const getValuesByDate = async (req, res, next) => {
 }
 
 
+// export methods
 module.exports = {
     getAllOeeValues,
     getLatestOeeValue,

@@ -1,3 +1,8 @@
+/****************************/
+/* Charts - highcharts      */
+/****************************/
+
+// class which exports all relevant methods to create and update charts
 export default class Charts {
     createChart(name, value){
         createChart(name, value)
@@ -72,10 +77,8 @@ const updateChart = (name, num, val) => {
     },
         ["", (100 - val)]
     ])
-
     Highcharts.charts[num].setTitle({ text: `${name}\u00A0${val}%`})
 }
-
 
 
 // create Trend
@@ -175,7 +178,6 @@ const createTrend = (oeeC, avaC, effC, quaC) => {
 }
 
 
-
 //update trend
 const updateTrend = (oeeT, avaT, effT, quaT) => {
     let values
@@ -193,5 +195,4 @@ const updateTrend = (oeeT, avaT, effT, quaT) => {
             values
         )
     }
-
 }

@@ -1,3 +1,7 @@
+/****************************/
+/* history specific css     */
+/****************************/
+
 body {
     display: grid;
     grid-template-areas:
@@ -10,6 +14,8 @@ body {
     grid-template-rows: 3rem 0.2fr 1fr 1fr 3rem;
 }
 
+
+/* responsive design depending on screen size */
 @media (max-width: 1200px) {
 }
 
@@ -39,6 +45,8 @@ body {
     }
 }
 
+
+/* responsive design depending on screen size */
 @media (max-width: 480px) {
     #kpi {
         grid-template-columns: 1fr;

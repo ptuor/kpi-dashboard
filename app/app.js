@@ -1,3 +1,7 @@
+/****************************/
+/* Application              */
+/****************************/
+
 // init project
 const express = require('express');
 const favicon = require('serve-favicon')
@@ -8,6 +12,7 @@ app.use(express.static('./'));
 // return favicon for each page
 app.use(favicon(path.join(__dirname, '../views', 'favicon.ico')))
 
+
 /*******************************************************/
 // routes
 /*******************************************************/
@@ -17,7 +22,7 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../views/current", "index.html"));
 });
 
-// route all other requests to router
+// route all other requests to main router
 const router = require('./router/router.js')
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());

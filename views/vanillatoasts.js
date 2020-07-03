@@ -1,4 +1,9 @@
+/****************************/
+/* vanilla toast            */
+/****************************/
+
 (function (root, factory) {
+
     try {
         // commonjs
         if (typeof exports === 'object') {
@@ -10,6 +15,7 @@
     } catch (error) {
         console.log('Isomorphic compatibility is not supported at this time for VanillaToasts.')
     }
+
 })(this, function () {
 
     // We need DOM to be ready

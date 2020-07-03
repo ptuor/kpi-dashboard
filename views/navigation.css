@@ -1,5 +1,7 @@
-
 /****************************/
+/* navigation               */
+/****************************/
+
 /* general navigation */
 header nav{
     top: 0px;
@@ -23,8 +25,6 @@ nav li a:hover {
 }
 
 
-
-/****************************/
 /* specific for big navigation */
 .Navi {
     float: left;
@@ -44,25 +44,21 @@ nav li a:hover {
     padding: 14px 16px;
 }
 
-
 nav li a.activeNavi {
     color: #80ff80;
 }
 
-/* generally hide the navigation */
 .Navi{
     visibility: hidden;
 }
-
 
 .Navi li svg{
     width: 24px;
     height: 24px;
 }
 
-/****************************/
-/* specific for hamburger navigation */
 
+/* specific for hamburger navigation */
 .NaviBox li a{
     padding: 5px 16px;
 }
@@ -123,6 +119,7 @@ input#hamburg {display:none}
     right: 0px;
 }
 
+/* responsive design depending on screen size */
 @media only screen and (min-width:640px){
     /* show navigation from this sice of screen */
     .Navi{
