@@ -1,4 +1,10 @@
+/****************************/
+/* view                     */
+/****************************/
+
 export default class View {
+
+    // constructor - create charts
     constructor(charts){
         this.charts = charts
         this.charts.createChart("OEE", 0)
@@ -9,6 +15,7 @@ export default class View {
     }
 
 
+    // pass al chart calls to functions of chart object
     createChart(name, value) {
         this.charts.createChart(name,value)
     }
@@ -26,7 +33,7 @@ export default class View {
     }
 
 
-
+    // set threshold message for two seconds
     thresholdMessage(oee) {
             VanillaToasts.create({
                 title: 'Warning',

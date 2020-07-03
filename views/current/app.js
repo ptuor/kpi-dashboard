@@ -1,3 +1,6 @@
+/****************************/
+/* Application              */
+/****************************/
 
 import View  from './view.js'
 import Controller from './controller.js'
@@ -10,6 +13,7 @@ const data = new Data("http://localhost:3000")
 const controller = new Controller(view, data)
 
 
+// start controller (polling function)
 controller.run()
 
 

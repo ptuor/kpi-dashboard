@@ -1,7 +1,14 @@
+/****************************/
+/* model                    */
+/****************************/
+
 export default class Data {
+
+    // constructor which gets server url
     constructor(serverUrl) {
         this.serverUrl = serverUrl
     }
+
 
     async getValuesByDates(fromDate, toDate){
         let url = new URL(this.serverUrl + "/oee/history")

@@ -1,7 +1,13 @@
+/****************************/
+/* model - test data        */
+/****************************/
+
 export default class Data {
+
     constructor(useReturnValues = false) {
         this.useReturnValues = useReturnValues
 
+        // store values
         this.returnValues = [
             {
                 _id:1,

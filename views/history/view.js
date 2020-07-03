@@ -1,8 +1,15 @@
+/****************************/
+/* view                     */
+/****************************/
+
 export default class View {
+
+    // constructor - create charts and date picker
     constructor(datePickerRootSelector, charts){
 
         this.charts = charts
 
+        // setup datepicker
         let datePickerFrom = flatpickr(datePickerRootSelector + " .fromDate", {
             enableTime: true,
             time_24hr: true,
@@ -14,6 +21,7 @@ export default class View {
             }
         });
 
+        // setup datepicker
         let datePickerTo = flatpickr(datePickerRootSelector + " .toDate", {
             enableTime: true,
             "maxDate": new Date().fp_incr(0),
@@ -25,6 +33,7 @@ export default class View {
             }
         });
 
+        // add event listener
         const refreshDates = document.querySelector(datePickerRootSelector + " .refreshDate")
         this.addRefreshEventListener(refreshDates)
 
@@ -51,17 +60,21 @@ export default class View {
         this.onRefreshHandler = onRefreshHandler
     }
 
+
     createChart(name, value) {
         this.charts.createChart(name,value)
     }
+
 
     updateChart(name, num, val) {
         this.charts.updateChart(name, num, val)
     }
 
+
     createTrend(oeeC, avaC, effC, quaC) {
         this.charts.createTrend(oeeC, avaC, effC, quaC)
     }
+
 
     updateTrend(oeeT, avaT, effT, quaT) {
         this.charts.updateTrend(oeeT, avaT, effT, quaT)

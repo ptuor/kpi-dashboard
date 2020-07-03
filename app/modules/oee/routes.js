@@ -1,9 +1,14 @@
+/****************************/
+/* OEE - router             */
+/****************************/
+
 // init /oee router
 const express = require('express')
 const router = express.Router()
 
 // init controller
 const controller  = require('./controller.js')
+
 
 /*******************************************************/
 // route handlers for all /oee requests
@@ -18,5 +23,6 @@ router.get('/live', controller.getLatestOeeValue)
 router.get('/history', controller.getValuesByDate)
 
 
+// export methods
 module.exports = router
 
