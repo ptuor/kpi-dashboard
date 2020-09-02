@@ -115,7 +115,7 @@ describe('Controller', function() {
 
             const averageValueFromArray = ctrl.calculateAverageOeeValues(array)
 
-            assert.strictEqual(averageValueFromArray, 10.25)
+            assert.strictEqual(averageValueFromArray, 10.3)
         })
 
         it('should return 3.33 as correct rounded average of array', function() {
@@ -124,7 +124,7 @@ describe('Controller', function() {
 
             const averageValueFromArray = ctrl.calculateAverageOeeValues(array)
 
-            assert.strictEqual(averageValueFromArray, 3.33)
+            assert.strictEqual(averageValueFromArray, 3.3)
         })
 
     })
