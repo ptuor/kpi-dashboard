@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "app/app.js",
-      "use": "@dist/node"
+      "use": "node"
     }
   ],
   "routes": [
