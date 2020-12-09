@@ -9,7 +9,7 @@
     "test:modules": "./node_modules/.bin/mocha test/modules/oee/*.test.js",
     "test:viewControllers": "./node_modules/.bin/mocha -r esm test/views/*/*.test.js",
     "dev": "./node_modules/.bin/nodemon app/app.js",
-    "dist": "NODE_ENV=production rm -rf dist && ./node_modules/.bin/parcel build app/app.js"
+    "dist": "node app/app.js"
   },
   "keywords": [],
   "author": "",
